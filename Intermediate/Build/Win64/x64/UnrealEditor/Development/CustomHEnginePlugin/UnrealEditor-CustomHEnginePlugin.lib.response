@@ -1,0 +1,16 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-CustomHEnginePlugin.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"S:\Thesis_I\Javier\AndresAndWenyiThesis\UnrealTest\20230917_customEngineTest\customEngine\Intermediate\Build\Win64\x64\customEngineEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.InclOrderUnreal5_1.h.obj"
+"S:\Thesis_I\Javier\AndresAndWenyiThesis\UnrealTest\20230917_customEngineTest\customEngine\Plugins\CustomHEnginePlugin\Intermediate\Build\Win64\x64\UnrealEditor\Development\CustomHEnginePlugin\CustomHEnginePlugin.init.gen.cpp.obj"
+"S:\Thesis_I\Javier\AndresAndWenyiThesis\UnrealTest\20230917_customEngineTest\customEngine\Plugins\CustomHEnginePlugin\Intermediate\Build\Win64\x64\UnrealEditor\Development\CustomHEnginePlugin\CustomHEnginePluginBPLibrary.gen.cpp.obj"
+"S:\Thesis_I\Javier\AndresAndWenyiThesis\UnrealTest\20230917_customEngineTest\customEngine\Plugins\CustomHEnginePlugin\Intermediate\Build\Win64\x64\UnrealEditor\Development\CustomHEnginePlugin\HAPI_To_Unreal_Common_Bridge.gen.cpp.obj"
+"S:\Thesis_I\Javier\AndresAndWenyiThesis\UnrealTest\20230917_customEngineTest\customEngine\Plugins\CustomHEnginePlugin\Intermediate\Build\Win64\x64\UnrealEditor\Development\CustomHEnginePlugin\CustomHEnginePlugin.cpp.obj"
+"S:\Thesis_I\Javier\AndresAndWenyiThesis\UnrealTest\20230917_customEngineTest\customEngine\Plugins\CustomHEnginePlugin\Intermediate\Build\Win64\x64\UnrealEditor\Development\CustomHEnginePlugin\CustomHEnginePluginBPLibrary.cpp.obj"
+"S:\Thesis_I\Javier\AndresAndWenyiThesis\UnrealTest\20230917_customEngineTest\customEngine\Plugins\CustomHEnginePlugin\Intermediate\Build\Win64\x64\UnrealEditor\Development\CustomHEnginePlugin\Default.rc2.res"
+/OUT:"S:\Thesis_I\Javier\AndresAndWenyiThesis\UnrealTest\20230917_customEngineTest\customEngine\Plugins\CustomHEnginePlugin\Intermediate\Build\Win64\x64\UnrealEditor\Development\CustomHEnginePlugin\UnrealEditor-CustomHEnginePlugin.lib"

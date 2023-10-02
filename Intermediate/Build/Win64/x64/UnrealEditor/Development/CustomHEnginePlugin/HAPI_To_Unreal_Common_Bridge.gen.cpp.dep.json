@@ -1,0 +1,19 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "s:\\thesis_i\\javier\\andresandwenyithesis\\unrealtest\\20230917_customenginetest\\customengine\\plugins\\customhengineplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\customhengineplugin\\uht\\hapi_to_unreal_common_bridge.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "s:\\thesis_i\\javier\\andresandwenyithesis\\unrealtest\\20230917_customenginetest\\customengine\\intermediate\\build\\win64\\x64\\customengineeditor\\development\\engine\\sharedpch.engine.shadowerrors.inclorderunreal5_1.h.pch",
+        "Includes": [
+            "s:\\thesis_i\\javier\\andresandwenyithesis\\unrealtest\\20230917_customenginetest\\customengine\\plugins\\customhengineplugin\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\customhengineplugin\\definitions.customhengineplugin.h",
+            "s:\\thesis_i\\javier\\andresandwenyithesis\\unrealtest\\20230917_customenginetest\\customengine\\plugins\\customhengineplugin\\source\\customhengineplugin\\public\\hapi_to_unreal_common_bridge.h",
+            "s:\\thesis_i\\javier\\andresandwenyithesis\\unrealtest\\20230917_customenginetest\\customengine\\plugins\\customhengineplugin\\source\\customhengineplugin\\public\\hapi\\hapi.h",
+            "s:\\thesis_i\\javier\\andresandwenyithesis\\unrealtest\\20230917_customenginetest\\customengine\\plugins\\customhengineplugin\\source\\customhengineplugin\\public\\hapi\\hapi_api.h",
+            "s:\\thesis_i\\javier\\andresandwenyithesis\\unrealtest\\20230917_customenginetest\\customengine\\plugins\\customhengineplugin\\source\\customhengineplugin\\public\\hapi\\hapi_common.h",
+            "s:\\thesis_i\\javier\\andresandwenyithesis\\unrealtest\\20230917_customenginetest\\customengine\\plugins\\customhengineplugin\\source\\customhengineplugin\\public\\hapi\\hapi_helpers.h",
+            "s:\\thesis_i\\javier\\andresandwenyithesis\\unrealtest\\20230917_customenginetest\\customengine\\plugins\\customhengineplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\customhengineplugin\\uht\\hapi_to_unreal_common_bridge.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

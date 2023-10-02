@@ -1,0 +1,14 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "s:\\thesis_i\\javier\\andresandwenyithesis\\unrealtest\\20230917_customenginetest\\customengine\\plugins\\customhengineplugin\\source\\customhengineplugin\\private\\customhengineplugin.cpp",
+        "ProvidedModule": "",
+        "PCH": "s:\\thesis_i\\javier\\andresandwenyithesis\\unrealtest\\20230917_customenginetest\\customengine\\intermediate\\build\\win64\\x64\\customengine\\debuggame\\engine\\sharedpch.engine.nonoptimized.shadowerrors.inclorderunreal5_1.h.pch",
+        "Includes": [
+            "s:\\thesis_i\\javier\\andresandwenyithesis\\unrealtest\\20230917_customenginetest\\customengine\\plugins\\customhengineplugin\\intermediate\\build\\win64\\x64\\unrealgame\\debuggame\\customhengineplugin\\definitions.customhengineplugin.h",
+            "s:\\thesis_i\\javier\\andresandwenyithesis\\unrealtest\\20230917_customenginetest\\customengine\\plugins\\customhengineplugin\\source\\customhengineplugin\\public\\customhengineplugin.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
