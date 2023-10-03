@@ -28,6 +28,10 @@ struct FHoudiniSession;
  \
 	DECLARE_FUNCTION(execHoudiniCommitGeo); \
 	DECLARE_FUNCTION(execHoudiniSetVertexListAndFaceCounts); \
+	DECLARE_FUNCTION(execHoudiniGetAttributeStringData); \
+	DECLARE_FUNCTION(execHoudiniGetAttributeFloatData); \
+	DECLARE_FUNCTION(execHoudiniGetAttributeIntData); \
+	DECLARE_FUNCTION(execHoudiniGetAttributeInfo); \
 	DECLARE_FUNCTION(execHoudiniAddAndSetIntAttribute); \
 	DECLARE_FUNCTION(execHoudiniAddAndSetStringAttribute); \
 	DECLARE_FUNCTION(execHoudiniAddAndSetFloatAttribute); \
@@ -59,6 +63,10 @@ struct FHoudiniSession;
  \
 	DECLARE_FUNCTION(execHoudiniCommitGeo); \
 	DECLARE_FUNCTION(execHoudiniSetVertexListAndFaceCounts); \
+	DECLARE_FUNCTION(execHoudiniGetAttributeStringData); \
+	DECLARE_FUNCTION(execHoudiniGetAttributeFloatData); \
+	DECLARE_FUNCTION(execHoudiniGetAttributeIntData); \
+	DECLARE_FUNCTION(execHoudiniGetAttributeInfo); \
 	DECLARE_FUNCTION(execHoudiniAddAndSetIntAttribute); \
 	DECLARE_FUNCTION(execHoudiniAddAndSetStringAttribute); \
 	DECLARE_FUNCTION(execHoudiniAddAndSetFloatAttribute); \

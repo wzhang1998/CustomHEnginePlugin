@@ -170,7 +170,7 @@ bool UCustomHEnginePluginBPLibrary::HoudiniComposeChildNodeList(FHoudiniSession 
 	int ChildListCount;
 	FEnumParser<HAPI_NodeType> EnumNodeTypePraser;
 	FEnumParser<HAPI_NodeFlags> EnumNodeFlagsPraser;
-	HAPI_Result Result = HAPI_ComposeChildNodeList(&OrigSession, (HAPI_NodeId)ParentNodeId, (HAPI_NodeTypeBits)EnumNodeTypePraser.ParseEnmun(HoudiniEnumToString(NodeType)), (HAPI_NodeFlags)EnumNodeFlagsPraser.ParseEnmun(HoudiniEnumToString(NodeFlags)), (HAPI_Bool)bRecursive, &ChildCount);
+	HAPI_Result Result = HAPI_ComposeChildNodeList(&OrigSession, (HAPI_NodeId)ParentNodeId, (HAPI_NodeTypeBits)EnumNodeTypePraser.ParseEnum(HoudiniEnumToString(NodeType)), (HAPI_NodeFlags)EnumNodeFlagsPraser.ParseEnum(HoudiniEnumToString(NodeFlags)), (HAPI_Bool)bRecursive, &ChildCount);
 	ChildListCount = ChildCount;
 	return Result == HAPI_RESULT_SUCCESS;
 }
@@ -254,7 +254,7 @@ FHoudiniPartInfo UCustomHEnginePluginBPLibrary::HoudiniCreatePartInfo(int FaceCo
 	PartInfo.vertexCount = VertexCount;
 	PartInfo.pointCount = PointCount;
 	FEnumParser<HAPI_PartType> EnumParser;
-	PartInfo.type = EnumParser.ParseEnmun(HoudiniEnumToString(HoudiniPartType));
+	PartInfo.type = EnumParser.ParseEnum(HoudiniEnumToString(HoudiniPartType));
 	FHoudiniPartInfo HoudiniPartInfo;
 	HoudiniPartInfo.HAPIPartInfo = PartInfo;
 	return HoudiniPartInfo;
@@ -281,8 +281,8 @@ FHoudiniAttributeInfo UCustomHEnginePluginBPLibrary::HoudiniCreateAttributeInfo(
 	FEnumParser<HAPI_AttributeOwner> AttributeOwnerEnumParser;
 	FEnumParser<HAPI_StorageType> StorageTypeEnumParser;
 
-	AttributeInfo.owner = AttributeOwnerEnumParser.ParseEnmun(HoudiniEnumToString(AttributeOwner));
-	AttributeInfo.storage = StorageTypeEnumParser.ParseEnmun(HoudiniEnumToString(StorageType));
+	AttributeInfo.owner = AttributeOwnerEnumParser.ParseEnum(HoudiniEnumToString(AttributeOwner));
+	AttributeInfo.storage = StorageTypeEnumParser.ParseEnum(HoudiniEnumToString(StorageType));
 	FHoudiniAttributeInfo HoudiniAttributeInfo;
 	HoudiniAttributeInfo.HAPIAttributeInfo = AttributeInfo;
 	return HoudiniAttributeInfo;
@@ -336,6 +336,86 @@ bool UCustomHEnginePluginBPLibrary::HoudiniAddAndSetIntAttribute(FHoudiniSession
 	HAPI_Result SetResult = HAPI_SetAttributeIntData(&OrigSession, (HAPI_NodeId)NodeId, 0, TCHAR_TO_UTF8(*AttributeName), &AttributeInfo.HAPIAttributeInfo, DataArray.GetData(), 0, Count);
 	return AddResult == HAPI_RESULT_SUCCESS && SetResult == HAPI_RESULT_SUCCESS;
 }
+
+bool UCustomHEnginePluginBPLibrary::HoudiniGetAttributeInfo(FHoudiniSession HoudiniSession, int NodeId, int PartId, FString AttributeName, FHoudiniAttributeInfo& AttributeInfo, EHoudiniAttributeOwner AttributeOwner)
+{
+	if (!HoudiniIsSessionValid(HoudiniSession))
+	{
+		return false;
+	}
+	HAPI_Session OrigSession = HoudiniSession.ToHAPI_Session();
+
+	FEnumParser<HAPI_AttributeOwner> EnumParser;
+	HAPI_Result Result = HAPI_GetAttributeInfo(&OrigSession, (HAPI_NodeId)NodeId, (HAPI_PartId)PartId, TCHAR_TO_UTF8(*AttributeName), EnumParser.ParseEnum(HoudiniEnumToString(AttributeOwner)), &AttributeInfo.HAPIAttributeInfo);
+	return Result == HAPI_RESULT_SUCCESS;
+}
+
+bool UCustomHEnginePluginBPLibrary::HoudiniGetAttributeIntData(FHoudiniSession HoudiniSession, int NodeId, int PartId, FString AttributeName, FHoudiniAttributeInfo AttributeInfo, TArray<int>& DataArray)
+{
+	if (!HoudiniIsSessionValid(HoudiniSession))
+	{
+		return false;
+	}
+	HAPI_Session OrigSession = HoudiniSession.ToHAPI_Session();
+	DataArray.SetNumUninitialized(AttributeInfo.HAPIAttributeInfo.tupleSize * AttributeInfo.HAPIAttributeInfo.count);
+	HAPI_Result Result = HAPI_GetAttributeIntData(&OrigSession, (HAPI_NodeId)NodeId, (HAPI_PartId)PartId, TCHAR_TO_UTF8(*AttributeName), &AttributeInfo.HAPIAttributeInfo, -1, DataArray.GetData(), 0, AttributeInfo.HAPIAttributeInfo.count);
+	return Result == HAPI_RESULT_SUCCESS;
+}
+
+bool UCustomHEnginePluginBPLibrary::HoudiniGetAttributeFloatData(FHoudiniSession HoudiniSession, int NodeId, int PartId, FString AttributeName, FHoudiniAttributeInfo AttributeInfo, TArray<float>& DataArray)
+{
+	if (!HoudiniIsSessionValid(HoudiniSession))
+	{
+		return false;
+	}
+	HAPI_Session OrigSession = HoudiniSession.ToHAPI_Session();
+	DataArray.SetNumUninitialized(AttributeInfo.HAPIAttributeInfo.tupleSize * AttributeInfo.HAPIAttributeInfo.count);
+	HAPI_Result Result = HAPI_GetAttributeFloatData(&OrigSession, (HAPI_NodeId)NodeId, (HAPI_PartId)PartId, TCHAR_TO_UTF8(*AttributeName), &AttributeInfo.HAPIAttributeInfo, -1, DataArray.GetData(), 0, AttributeInfo.HAPIAttributeInfo.count);
+	return Result == HAPI_RESULT_SUCCESS;
+}
+
+
+bool UCustomHEnginePluginBPLibrary::HoudiniGetAttributeStringData(FHoudiniSession HoudiniSession, int NodeId, int PartId, FString AttributeName, FHoudiniAttributeInfo AttributeInfo, TArray<FString>& DataArray)
+{
+	if (!HoudiniIsSessionValid(HoudiniSession))
+	{
+		return false;
+	}
+	HAPI_Session OrigSession = HoudiniSession.ToHAPI_Session();
+
+	TArray<HAPI_StringHandle> StringHandleList;
+	int StringCount = AttributeInfo.HAPIAttributeInfo.tupleSize * AttributeInfo.HAPIAttributeInfo.count;
+	StringHandleList.SetNumUninitialized(StringCount);
+	HAPI_Result Result = HAPI_GetAttributeStringData(&OrigSession, (HAPI_NodeId)NodeId, (HAPI_PartId)PartId, TCHAR_TO_UTF8(*AttributeName), &AttributeInfo.HAPIAttributeInfo, StringHandleList.GetData(), 0, StringCount);
+	if (Result != HAPI_RESULT_SUCCESS)
+	{
+		return false;
+	}
+
+	TMap<HAPI_StringHandle, FString> HandleToStringMap;
+	DataArray.SetNum(StringCount);
+	for (int i = 0; i < StringCount; i++)
+	{
+		if (i > 0 && StringHandleList[i] == StringHandleList[i - 1])
+		{
+			DataArray[i] = DataArray[i - 1];
+		}
+
+		const FString* FoundString = HandleToStringMap.Find(StringHandleList[i]);
+		if (FoundString)
+		{
+			DataArray[i] = *FoundString;
+		}
+		else
+		{
+			DataArray[i] = ToString(HoudiniSession, StringHandleList[i]);
+			HandleToStringMap.Add(StringHandleList[i], DataArray[i]);
+		}
+	}
+	return true;
+	
+}
+
 
 bool UCustomHEnginePluginBPLibrary::HoudiniSetVertexListAndFaceCounts(FHoudiniSession HoudiniSession, int NodeId, const TArray<int>& VertexDataArray)
 {

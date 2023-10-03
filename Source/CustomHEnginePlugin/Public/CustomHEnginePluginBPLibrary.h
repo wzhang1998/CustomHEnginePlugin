@@ -142,6 +142,21 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "CustomHEnginePluginBPLibrary | Attributes")
 	static bool HoudiniAddAndSetIntAttribute(FHoudiniSession HoudiniSession, int NodeId, FString AttributeName, const FHoudiniAttributeInfo& AttributeInfo, const TArray<int>& DataArray, int Count);
 
+//    Get the attribute info struct for the attribute specified by name.
+	UFUNCTION(BlueprintCallable, Category = "CustomHEnginePluginBPLibrary | Attributes")
+	static bool HoudiniGetAttributeInfo(FHoudiniSession HoudiniSession, int NodeId, int PartId, FString AttributeName, FHoudiniAttributeInfo& AttributeInfo, EHoudiniAttributeOwner AttributeOwner = EHoudiniAttributeOwner::HOUDINI_ATTROWNER_POINT);
+
+//    Get attribute integer data.
+	UFUNCTION(BlueprintCallable, Category = "CustomHEnginePluginBPLibrary | Attributes")
+	static bool HoudiniGetAttributeIntData(FHoudiniSession HoudiniSession, int NodeId, int PartId, FString AttributeName, FHoudiniAttributeInfo AttributeInfo, TArray<int>& DataArray);
+
+//    Get attribute float data.
+	UFUNCTION(BlueprintCallable, Category = "CustomHEnginePluginBPLibrary | Attributes")
+	static bool HoudiniGetAttributeFloatData(FHoudiniSession HoudiniSession, int NodeId, int PartId, FString AttributeName, FHoudiniAttributeInfo AttributeInfo, TArray<float>& DataArray);
+
+//    Get attribute string data.
+	UFUNCTION(BlueprintCallable, Category = "CustomHEnginePluginBPLibrary | Attributes")
+	static bool HoudiniGetAttributeStringData(FHoudiniSession HoudiniSession, int NodeId, int PartId, FString AttributeName, FHoudiniAttributeInfo AttributeInfo, TArray<FString>& DataArray);
 
 
 //    Set array containing the vertex-point associations where the ith element in the array is the point index the ith vertex associates with.

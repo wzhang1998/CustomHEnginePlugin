@@ -124,7 +124,7 @@ class FEnumParser
 public:
 	FEnumParser() {};
 
-	T ParseEnmun(const FString &value)
+	T ParseEnum(const FString &value)
 	{
 		T* ValuePtr = EnumMap.Find(value);
 		check(ValuePtr);
