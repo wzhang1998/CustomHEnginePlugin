@@ -155,7 +155,7 @@ public:
 	static bool HoudiniGetAttributeFloatData(FHoudiniSession HoudiniSession, int NodeId, int PartId, FString AttributeName, FHoudiniAttributeInfo AttributeInfo, TArray<float>& DataArray);
 
 //    Get attribute string data.
-	UFUNCTION(BlueprintCallable, Category = "CustomHEnginePluginBPLibrary | Attributes")
+	UFUNCTION(BlueprintCallable, Category = "CustomHEnginePluginBPLibrary | Attributes" )
 	static bool HoudiniGetAttributeStringData(FHoudiniSession HoudiniSession, int NodeId, int PartId, FString AttributeName, FHoudiniAttributeInfo AttributeInfo, TArray<FString>& DataArray);
 
 
@@ -167,6 +167,21 @@ public:
 //    Commit the current input geometry to the cook engine. Nodes that use this geometry node will re-cook using the input geometry given through the geometry setter API calls.
 	UFUNCTION(BlueprintCallable, Category = "CustomHEnginePluginBPLibrary | Geometry Setters")
 	static bool HoudiniCommitGeo(FHoudiniSession HoudiniSession, int NodeId);
+
+//    Get array containing the vertex-point associations where the ith element in the array is the point index the ith vertex associates with.
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "CustomHEnginePluginBPLibrary | Geometry Getters")
+	static bool HoudiniGetVertexList(FHoudiniSession HoudiniSession, int NodeId, int PartId, TArray<int>& VertexList, int Count);
+
+//	  Get a particular part info struct.
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "CustomHEnginePluginBPLibrary | Geometry Getters")
+	static bool HoudiniGetPartInfo(FHoudiniSession HoudiniSession, int NodeId, int PartId, FHoudiniPartInfo& PartInfo);
+
+//    Get geo info from part info.
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "CustomHEnginePluginBPLibrary | Geometry Getters")
+	static void HoudiniGetPartInfoSubData(const FHoudiniPartInfo& PartInfo, int& FaceCount, int& PointCount);
+
+
+
 
 private:
 

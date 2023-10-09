@@ -443,6 +443,35 @@ bool UCustomHEnginePluginBPLibrary::HoudiniCommitGeo(FHoudiniSession HoudiniSess
 	return Result == HAPI_RESULT_SUCCESS;
 }
 
+bool UCustomHEnginePluginBPLibrary::HoudiniGetVertexList(FHoudiniSession HoudiniSession, int NodeId, int PartId, TArray<int>& VertexList, int Count)
+{
+	if (!HoudiniIsSessionValid(HoudiniSession))
+	{
+		return false;
+	}
+	HAPI_Session OrigSession = HoudiniSession.ToHAPI_Session();
+	VertexList.SetNumUninitialized(Count);
+	HAPI_Result Result = HAPI_GetVertexList(&OrigSession, (HAPI_NodeId)NodeId, (HAPI_PartId)PartId, VertexList.GetData(), 0, Count);
+	return Result == HAPI_RESULT_SUCCESS;
+}
+
+bool UCustomHEnginePluginBPLibrary::HoudiniGetPartInfo(FHoudiniSession HoudiniSession, int NodeId, int PartId, FHoudiniPartInfo& PartInfo)
+{
+	if (!HoudiniIsSessionValid(HoudiniSession))
+	{
+		return false;
+	}
+	HAPI_Session OrigSession = HoudiniSession.ToHAPI_Session();
+	HAPI_Result Result = HAPI_GetPartInfo(&OrigSession, (HAPI_NodeId)NodeId, (HAPI_PartId)PartId, &PartInfo.HAPIPartInfo);
+	return Result == HAPI_RESULT_SUCCESS;
+}
+
+void UCustomHEnginePluginBPLibrary::HoudiniGetPartInfoSubData(const FHoudiniPartInfo& PartInfo, int& FaceCount, int& PointCount)
+{
+	FaceCount = PartInfo.HAPIPartInfo.faceCount;
+	PointCount = PartInfo.HAPIPartInfo.pointCount;
+}
+
 FString UCustomHEnginePluginBPLibrary::ToString(FHoudiniSession HoudiniSession, HAPI_StringHandle InStringHandle)
 {
 	if (!HoudiniIsSessionValid(HoudiniSession))

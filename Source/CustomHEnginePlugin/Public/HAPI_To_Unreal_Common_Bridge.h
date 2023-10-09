@@ -286,3 +286,12 @@ struct FHoudiniAttributeInfo
 
 	HAPI_AttributeInfo HAPIAttributeInfo;
 };
+
+
+USTRUCT(BlueprintType)
+struct FVertexListStruct
+{
+	GENERATED_USTRUCT_BODY();
+	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "Houdini Common");
+	TArray<int> VertexList;
+};

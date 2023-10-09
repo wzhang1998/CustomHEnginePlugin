@@ -26,6 +26,9 @@ struct FHoudiniSession;
 #define FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_CustomHEnginePluginBPLibrary_h_29_SPARSE_DATA
 #define FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_CustomHEnginePluginBPLibrary_h_29_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execHoudiniGetPartInfoSubData); \
+	DECLARE_FUNCTION(execHoudiniGetPartInfo); \
+	DECLARE_FUNCTION(execHoudiniGetVertexList); \
 	DECLARE_FUNCTION(execHoudiniCommitGeo); \
 	DECLARE_FUNCTION(execHoudiniSetVertexListAndFaceCounts); \
 	DECLARE_FUNCTION(execHoudiniGetAttributeStringData); \
@@ -61,6 +64,9 @@ struct FHoudiniSession;
 
 #define FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_CustomHEnginePluginBPLibrary_h_29_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execHoudiniGetPartInfoSubData); \
+	DECLARE_FUNCTION(execHoudiniGetPartInfo); \
+	DECLARE_FUNCTION(execHoudiniGetVertexList); \
 	DECLARE_FUNCTION(execHoudiniCommitGeo); \
 	DECLARE_FUNCTION(execHoudiniSetVertexListAndFaceCounts); \
 	DECLARE_FUNCTION(execHoudiniGetAttributeStringData); \

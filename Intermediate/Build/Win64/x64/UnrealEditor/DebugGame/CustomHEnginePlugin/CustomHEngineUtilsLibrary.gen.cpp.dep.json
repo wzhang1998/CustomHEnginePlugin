@@ -9,6 +9,12 @@
             "d:\\efiles\\unreal projects\\20230924_customenginetest\\customengine\\plugins\\customhengineplugin\\source\\customhengineplugin\\public\\customhengineutilslibrary.h",
             "d:\\epic games\\ue_5.2\\engine\\plugins\\runtime\\proceduralmeshcomponent\\source\\proceduralmeshcomponent\\public\\proceduralmeshcomponent.h",
             "d:\\epic games\\ue_5.2\\engine\\plugins\\runtime\\proceduralmeshcomponent\\intermediate\\build\\win64\\unrealeditor\\inc\\proceduralmeshcomponent\\uht\\proceduralmeshcomponent.generated.h",
+            "d:\\efiles\\unreal projects\\20230924_customenginetest\\customengine\\plugins\\customhengineplugin\\source\\customhengineplugin\\public\\hapi_to_unreal_common_bridge.h",
+            "d:\\efiles\\unreal projects\\20230924_customenginetest\\customengine\\plugins\\customhengineplugin\\source\\customhengineplugin\\public\\hapi\\hapi.h",
+            "d:\\efiles\\unreal projects\\20230924_customenginetest\\customengine\\plugins\\customhengineplugin\\source\\customhengineplugin\\public\\hapi\\hapi_api.h",
+            "d:\\efiles\\unreal projects\\20230924_customenginetest\\customengine\\plugins\\customhengineplugin\\source\\customhengineplugin\\public\\hapi\\hapi_common.h",
+            "d:\\efiles\\unreal projects\\20230924_customenginetest\\customengine\\plugins\\customhengineplugin\\source\\customhengineplugin\\public\\hapi\\hapi_helpers.h",
+            "d:\\efiles\\unreal projects\\20230924_customenginetest\\customengine\\plugins\\customhengineplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\customhengineplugin\\uht\\hapi_to_unreal_common_bridge.generated.h",
             "d:\\efiles\\unreal projects\\20230924_customenginetest\\customengine\\plugins\\customhengineplugin\\intermediate\\build\\win64\\unrealeditor\\inc\\customhengineplugin\\uht\\customhengineutilslibrary.generated.h"
         ],
         "ImportedModules": [],

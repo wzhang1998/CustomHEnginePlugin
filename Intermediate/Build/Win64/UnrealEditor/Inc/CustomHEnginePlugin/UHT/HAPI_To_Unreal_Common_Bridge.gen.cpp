@@ -19,6 +19,7 @@ void EmptyLinkFunctionForGeneratedCodeHAPI_To_Unreal_Common_Bridge() {}
 	CUSTOMHENGINEPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FHoudiniCookOptions();
 	CUSTOMHENGINEPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FHoudiniPartInfo();
 	CUSTOMHENGINEPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FHoudiniSession();
+	CUSTOMHENGINEPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FVertexListStruct();
 	UPackage* Z_Construct_UPackage__Script_CustomHEnginePlugin();
 // End Cross Module References
 	static FEnumRegistrationInfo Z_Registration_Info_UEnum_EHoudiniSessionType;
@@ -711,6 +712,76 @@ template<> CUSTOMHENGINEPLUGIN_API UScriptStruct* StaticStruct<FHoudiniAttribute
 		}
 		return Z_Registration_Info_UScriptStruct_HoudiniAttributeInfo.InnerSingleton;
 	}
+	static FStructRegistrationInfo Z_Registration_Info_UScriptStruct_VertexListStruct;
+class UScriptStruct* FVertexListStruct::StaticStruct()
+{
+	if (!Z_Registration_Info_UScriptStruct_VertexListStruct.OuterSingleton)
+	{
+		Z_Registration_Info_UScriptStruct_VertexListStruct.OuterSingleton = GetStaticStruct(Z_Construct_UScriptStruct_FVertexListStruct, (UObject*)Z_Construct_UPackage__Script_CustomHEnginePlugin(), TEXT("VertexListStruct"));
+	}
+	return Z_Registration_Info_UScriptStruct_VertexListStruct.OuterSingleton;
+}
+template<> CUSTOMHENGINEPLUGIN_API UScriptStruct* StaticStruct<FVertexListStruct>()
+{
+	return FVertexListStruct::StaticStruct();
+}
+	struct Z_Construct_UScriptStruct_FVertexListStruct_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Struct_MetaDataParams[];
+#endif
+		static void* NewStructOps();
+		static const UECodeGen_Private::FUnsizedIntPropertyParams NewProp_VertexList_Inner;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_VertexList_MetaData[];
+#endif
+		static const UECodeGen_Private::FArrayPropertyParams NewProp_VertexList;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+		static const UECodeGen_Private::FStructParams ReturnStructParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FVertexListStruct_Statics::Struct_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "ModuleRelativePath", "Public/HAPI_To_Unreal_Common_Bridge.h" },
+	};
+#endif
+	void* Z_Construct_UScriptStruct_FVertexListStruct_Statics::NewStructOps()
+	{
+		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FVertexListStruct>();
+	}
+	const UECodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UScriptStruct_FVertexListStruct_Statics::NewProp_VertexList_Inner = { "VertexList", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, 0, METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FVertexListStruct_Statics::NewProp_VertexList_MetaData[] = {
+		{ "Category", "Houdini Common" },
+		{ "ModuleRelativePath", "Public/HAPI_To_Unreal_Common_Bridge.h" },
+	};
+#endif
+	const UECodeGen_Private::FArrayPropertyParams Z_Construct_UScriptStruct_FVertexListStruct_Statics::NewProp_VertexList = { "VertexList", nullptr, (EPropertyFlags)0x0010000000010015, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(FVertexListStruct, VertexList), EArrayPropertyFlags::None, METADATA_PARAMS(Z_Construct_UScriptStruct_FVertexListStruct_Statics::NewProp_VertexList_MetaData, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FVertexListStruct_Statics::NewProp_VertexList_MetaData)) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UScriptStruct_FVertexListStruct_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FVertexListStruct_Statics::NewProp_VertexList_Inner,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UScriptStruct_FVertexListStruct_Statics::NewProp_VertexList,
+	};
+	const UECodeGen_Private::FStructParams Z_Construct_UScriptStruct_FVertexListStruct_Statics::ReturnStructParams = {
+		(UObject* (*)())Z_Construct_UPackage__Script_CustomHEnginePlugin,
+		nullptr,
+		&NewStructOps,
+		"VertexListStruct",
+		sizeof(FVertexListStruct),
+		alignof(FVertexListStruct),
+		Z_Construct_UScriptStruct_FVertexListStruct_Statics::PropPointers,
+		UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FVertexListStruct_Statics::PropPointers),
+		RF_Public|RF_Transient|RF_MarkAsNative,
+		EStructFlags(0x00000001),
+		METADATA_PARAMS(Z_Construct_UScriptStruct_FVertexListStruct_Statics::Struct_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FVertexListStruct_Statics::Struct_MetaDataParams))
+	};
+	UScriptStruct* Z_Construct_UScriptStruct_FVertexListStruct()
+	{
+		if (!Z_Registration_Info_UScriptStruct_VertexListStruct.InnerSingleton)
+		{
+			UECodeGen_Private::ConstructUScriptStruct(Z_Registration_Info_UScriptStruct_VertexListStruct.InnerSingleton, Z_Construct_UScriptStruct_FVertexListStruct_Statics::ReturnStructParams);
+		}
+		return Z_Registration_Info_UScriptStruct_VertexListStruct.InnerSingleton;
+	}
 	struct Z_CompiledInDeferFile_FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_HAPI_To_Unreal_Common_Bridge_h_Statics
 	{
 		static const FEnumRegisterCompiledInInfo EnumInfo[];
@@ -729,8 +800,9 @@ template<> CUSTOMHENGINEPLUGIN_API UScriptStruct* StaticStruct<FHoudiniAttribute
 		{ FHoudiniCookOptions::StaticStruct, Z_Construct_UScriptStruct_FHoudiniCookOptions_Statics::NewStructOps, TEXT("HoudiniCookOptions"), &Z_Registration_Info_UScriptStruct_HoudiniCookOptions, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FHoudiniCookOptions), 928176404U) },
 		{ FHoudiniPartInfo::StaticStruct, Z_Construct_UScriptStruct_FHoudiniPartInfo_Statics::NewStructOps, TEXT("HoudiniPartInfo"), &Z_Registration_Info_UScriptStruct_HoudiniPartInfo, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FHoudiniPartInfo), 961480838U) },
 		{ FHoudiniAttributeInfo::StaticStruct, Z_Construct_UScriptStruct_FHoudiniAttributeInfo_Statics::NewStructOps, TEXT("HoudiniAttributeInfo"), &Z_Registration_Info_UScriptStruct_HoudiniAttributeInfo, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FHoudiniAttributeInfo), 1630230711U) },
+		{ FVertexListStruct::StaticStruct, Z_Construct_UScriptStruct_FVertexListStruct_Statics::NewStructOps, TEXT("VertexListStruct"), &Z_Registration_Info_UScriptStruct_VertexListStruct, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FVertexListStruct), 1477708915U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_HAPI_To_Unreal_Common_Bridge_h_3445777056(TEXT("/Script/CustomHEnginePlugin"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_HAPI_To_Unreal_Common_Bridge_h_2885901475(TEXT("/Script/CustomHEnginePlugin"),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_HAPI_To_Unreal_Common_Bridge_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_HAPI_To_Unreal_Common_Bridge_h_Statics::ScriptStructInfo),
 		Z_CompiledInDeferFile_FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_HAPI_To_Unreal_Common_Bridge_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_HAPI_To_Unreal_Common_Bridge_h_Statics::EnumInfo));

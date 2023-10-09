@@ -42,6 +42,13 @@ template<> CUSTOMHENGINEPLUGIN_API UScriptStruct* StaticStruct<struct FHoudiniPa
 
 template<> CUSTOMHENGINEPLUGIN_API UScriptStruct* StaticStruct<struct FHoudiniAttributeInfo>();
 
+#define FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_HAPI_To_Unreal_Common_Bridge_h_294_GENERATED_BODY \
+	friend struct Z_Construct_UScriptStruct_FVertexListStruct_Statics; \
+	CUSTOMHENGINEPLUGIN_API static class UScriptStruct* StaticStruct();
+
+
+template<> CUSTOMHENGINEPLUGIN_API UScriptStruct* StaticStruct<struct FVertexListStruct>();
+
 #undef CURRENT_FILE_ID
 #define CURRENT_FILE_ID FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_HAPI_To_Unreal_Common_Bridge_h
 

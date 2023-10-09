@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "ProceduralMeshComponent.h"
+#include "HAPI_To_Unreal_Common_Bridge.h"
 #include "CustomHEngineUtilsLibrary.generated.h"
 
 /**
@@ -22,7 +23,26 @@ class CUSTOMHENGINEPLUGIN_API UCustomHEngineUtilsLibrary : public UBlueprintFunc
 	UFUNCTION(BlueprintCallable, BlueprintPure, meta = (ToolTip = "Convert vector list to float list."), Category = "CustomHEnginePluginBPLibrary | Mesh")
 	static bool VectorListToFloatList(const TArray<FVector>& VectorList, TArray<float>& FloatList, bool bSwitchYZAxis = true, float Multiplication = 0.01f);
 
+	UFUNCTION(BlueprintCallable, BlueprintPure, meta = (ToolTip = "Convert float list to vector list."), Category = "CustomHEnginePluginBPLibrary | Mesh")
+	static bool FloatListToVectorList(const TArray<float>& FloatList,TArray<FVector>& VectorList, bool bSwitchYZAxis = true, float Multiplication = 100.f);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, meta = (ToolTip = "Convert float list to procmeshtangent list."), Category = "CustomHEnginePluginBPLibrary | Mesh")
+	static bool FloatListToProcMeshTangentList(const TArray<float>& FloatList, TArray<FProcMeshTangent>& ProcMeshTangentList, bool bSwitchYZAxis = true, bool bFlipTangentY = false);
+
 	UFUNCTION(BlueprintCallable, BlueprintPure, meta = (ToolTip = "Convert vector 2D list to float list."), Category = "CustomHEnginePluginBPLibrary | Mesh")
-	static bool Vector2DListToFloatList(const TArray<FVector2D>& Vector2DList, TArray<float>& FloatList, float Multiplication = 1.f);
+	static bool Vector2DListToFloatList(const TArray<FVector2D>& Vector2DList, TArray<float>& FloatList, bool bFlipY = true);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, meta = (ToolTip = "Convert float list to vector 2D list."), Category = "CustomHEnginePluginBPLibrary | Mesh")
+	static bool FloatListToVector2DList(const TArray<float>& FloatList, TArray<FVector2D>& Vector2DList, bool bFlipY = true);
+
+	UFUNCTION(BlueprintCallable,meta = (ToolTip = "Reverse vertex list."), Category = "CustomHEnginePluginBPLibrary | Mesh")
+	static bool ReverseVertexListOrder(UPARAM(ref) TArray<int>& VertexList);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, meta = (ToolTip = "Split vertex list into multiple vertex lists by prim section index attributes."), Category = "CustomHEnginePluginBPLibrary | Mesh")
+	static bool SplitVertexList(const TArray<int>& VertexList, const TArray<int>& SectionIndexList, TArray<FVertexListStruct>& SplittedVertexLists);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, meta = (ToolTip = "Split vertex list into multiple vertex lists by prim string attribute."), Category = "CustomHEnginePluginBPLibrary | Mesh")
+	static bool SplitVertexListByStringAttributes(const TArray<int>& VertexList, const TArray<FString>& StringAttributeList, TArray<FVertexListStruct>& SplittedVertexLists);
+
 
 };
