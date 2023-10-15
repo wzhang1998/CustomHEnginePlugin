@@ -180,8 +180,21 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "CustomHEnginePluginBPLibrary | Geometry Getters")
 	static void HoudiniGetPartInfoSubData(const FHoudiniPartInfo& PartInfo, int& FaceCount, int& PointCount);
 
+//    Fill an HAPI_NodeInfo struct.
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "CustomHEnginePluginBPLibrary | Geometry Getters")
+	static bool HoudiniGetNodeInfo(FHoudiniSession HoudiniSession, int NodeId, FHoudiniNodeInfo& NodeInfo);
 
+//    Get info from node info.
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "CustomHEnginePluginBPLibrary | Geometry Getters")
+	static void	HoudiniGetNodeInfoSubData(const FHoudiniNodeInfo& NodeInfo, int& ParentNodeId, bool& bIsValid, int& UniqueHoudiniNodeId);
 
+//   Set the transform of an individual object. Note that the object nodes have to either be editable or have their transform parameters exposed at the asset level. This won't work otherwise.
+	UFUNCTION(BlueprintCallable, Category = "CustomHEnginePluginBPLibrary | Objects")
+	static bool HoudiniSetOBJNodeTransform(FHoudiniSession HoudiniSession, int OBJNodeId, const FTransform& Transform);
+
+//	 Get the transform of an OBJ node.
+	UFUNCTION(BlueprintCallable, Category = "CustomHEnginePluginBPLibrary | Objects")
+	static bool HoudiniGetOBJNodeTransform(FHoudiniSession HoudiniSession, int OBJNodeId, int RelativeNOBJNodeId, FTransform& Transform);
 
 private:
 

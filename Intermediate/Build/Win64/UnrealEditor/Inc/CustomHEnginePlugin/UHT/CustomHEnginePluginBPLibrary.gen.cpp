@@ -10,6 +10,7 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeCustomHEnginePluginBPLibrary() {}
 // Cross Module References
+	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FTransform();
 	CUSTOMHENGINEPLUGIN_API UClass* Z_Construct_UClass_UCustomHEnginePluginBPLibrary();
 	CUSTOMHENGINEPLUGIN_API UClass* Z_Construct_UClass_UCustomHEnginePluginBPLibrary_NoRegister();
 	CUSTOMHENGINEPLUGIN_API UEnum* Z_Construct_UEnum_CustomHEnginePlugin_EHoudiniAttributeOwner();
@@ -19,11 +20,54 @@ void EmptyLinkFunctionForGeneratedCodeCustomHEnginePluginBPLibrary() {}
 	CUSTOMHENGINEPLUGIN_API UEnum* Z_Construct_UEnum_CustomHEnginePlugin_EHoudiniStorageType();
 	CUSTOMHENGINEPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FHoudiniAttributeInfo();
 	CUSTOMHENGINEPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FHoudiniCookOptions();
+	CUSTOMHENGINEPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FHoudiniNodeInfo();
 	CUSTOMHENGINEPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FHoudiniPartInfo();
 	CUSTOMHENGINEPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FHoudiniSession();
 	ENGINE_API UClass* Z_Construct_UClass_UBlueprintFunctionLibrary();
 	UPackage* Z_Construct_UPackage__Script_CustomHEnginePlugin();
 // End Cross Module References
+	DEFINE_FUNCTION(UCustomHEnginePluginBPLibrary::execHoudiniGetOBJNodeTransform)
+	{
+		P_GET_STRUCT(FHoudiniSession,Z_Param_HoudiniSession);
+		P_GET_PROPERTY(FIntProperty,Z_Param_OBJNodeId);
+		P_GET_PROPERTY(FIntProperty,Z_Param_RelativeNOBJNodeId);
+		P_GET_STRUCT_REF(FTransform,Z_Param_Out_Transform);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(bool*)Z_Param__Result=UCustomHEnginePluginBPLibrary::HoudiniGetOBJNodeTransform(Z_Param_HoudiniSession,Z_Param_OBJNodeId,Z_Param_RelativeNOBJNodeId,Z_Param_Out_Transform);
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(UCustomHEnginePluginBPLibrary::execHoudiniSetOBJNodeTransform)
+	{
+		P_GET_STRUCT(FHoudiniSession,Z_Param_HoudiniSession);
+		P_GET_PROPERTY(FIntProperty,Z_Param_OBJNodeId);
+		P_GET_STRUCT_REF(FTransform,Z_Param_Out_Transform);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(bool*)Z_Param__Result=UCustomHEnginePluginBPLibrary::HoudiniSetOBJNodeTransform(Z_Param_HoudiniSession,Z_Param_OBJNodeId,Z_Param_Out_Transform);
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(UCustomHEnginePluginBPLibrary::execHoudiniGetNodeInfoSubData)
+	{
+		P_GET_STRUCT_REF(FHoudiniNodeInfo,Z_Param_Out_NodeInfo);
+		P_GET_PROPERTY_REF(FIntProperty,Z_Param_Out_ParentNodeId);
+		P_GET_UBOOL_REF(Z_Param_Out_bIsValid);
+		P_GET_PROPERTY_REF(FIntProperty,Z_Param_Out_UniqueHoudiniNodeId);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		UCustomHEnginePluginBPLibrary::HoudiniGetNodeInfoSubData(Z_Param_Out_NodeInfo,Z_Param_Out_ParentNodeId,Z_Param_Out_bIsValid,Z_Param_Out_UniqueHoudiniNodeId);
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(UCustomHEnginePluginBPLibrary::execHoudiniGetNodeInfo)
+	{
+		P_GET_STRUCT(FHoudiniSession,Z_Param_HoudiniSession);
+		P_GET_PROPERTY(FIntProperty,Z_Param_NodeId);
+		P_GET_STRUCT_REF(FHoudiniNodeInfo,Z_Param_Out_NodeInfo);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(bool*)Z_Param__Result=UCustomHEnginePluginBPLibrary::HoudiniGetNodeInfo(Z_Param_HoudiniSession,Z_Param_NodeId,Z_Param_Out_NodeInfo);
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(UCustomHEnginePluginBPLibrary::execHoudiniGetPartInfoSubData)
 	{
 		P_GET_STRUCT_REF(FHoudiniPartInfo,Z_Param_Out_PartInfo);
@@ -413,6 +457,9 @@ void EmptyLinkFunctionForGeneratedCodeCustomHEnginePluginBPLibrary() {}
 			{ "HoudiniGetAttributeIntData", &UCustomHEnginePluginBPLibrary::execHoudiniGetAttributeIntData },
 			{ "HoudiniGetAttributeStringData", &UCustomHEnginePluginBPLibrary::execHoudiniGetAttributeStringData },
 			{ "HoudiniGetComposedChildNodeList", &UCustomHEnginePluginBPLibrary::execHoudiniGetComposedChildNodeList },
+			{ "HoudiniGetNodeInfo", &UCustomHEnginePluginBPLibrary::execHoudiniGetNodeInfo },
+			{ "HoudiniGetNodeInfoSubData", &UCustomHEnginePluginBPLibrary::execHoudiniGetNodeInfoSubData },
+			{ "HoudiniGetOBJNodeTransform", &UCustomHEnginePluginBPLibrary::execHoudiniGetOBJNodeTransform },
 			{ "HoudiniGetPartInfo", &UCustomHEnginePluginBPLibrary::execHoudiniGetPartInfo },
 			{ "HoudiniGetPartInfoSubData", &UCustomHEnginePluginBPLibrary::execHoudiniGetPartInfoSubData },
 			{ "HoudiniGetVertexList", &UCustomHEnginePluginBPLibrary::execHoudiniGetVertexList },
@@ -422,6 +469,7 @@ void EmptyLinkFunctionForGeneratedCodeCustomHEnginePluginBPLibrary() {}
 			{ "HoudiniLoadAssetLibraryFromFile", &UCustomHEnginePluginBPLibrary::execHoudiniLoadAssetLibraryFromFile },
 			{ "HoudiniQueryNodeInput", &UCustomHEnginePluginBPLibrary::execHoudiniQueryNodeInput },
 			{ "HoudiniSaveHIPFile", &UCustomHEnginePluginBPLibrary::execHoudiniSaveHIPFile },
+			{ "HoudiniSetOBJNodeTransform", &UCustomHEnginePluginBPLibrary::execHoudiniSetOBJNodeTransform },
 			{ "HoudiniSetPartInfo", &UCustomHEnginePluginBPLibrary::execHoudiniSetPartInfo },
 			{ "HoudiniSetVertexListAndFaceCounts", &UCustomHEnginePluginBPLibrary::execHoudiniSetVertexListAndFaceCounts },
 			{ "StartServerAndCreateSession", &UCustomHEnginePluginBPLibrary::execStartServerAndCreateSession },
@@ -1748,6 +1796,174 @@ void EmptyLinkFunctionForGeneratedCodeCustomHEnginePluginBPLibrary() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfo_Statics
+	{
+		struct CustomHEnginePluginBPLibrary_eventHoudiniGetNodeInfo_Parms
+		{
+			FHoudiniSession HoudiniSession;
+			int32 NodeId;
+			FHoudiniNodeInfo NodeInfo;
+			bool ReturnValue;
+		};
+		static const UECodeGen_Private::FStructPropertyParams NewProp_HoudiniSession;
+		static const UECodeGen_Private::FUnsizedIntPropertyParams NewProp_NodeId;
+		static const UECodeGen_Private::FStructPropertyParams NewProp_NodeInfo;
+		static void NewProp_ReturnValue_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_ReturnValue;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfo_Statics::NewProp_HoudiniSession = { "HoudiniSession", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(CustomHEnginePluginBPLibrary_eventHoudiniGetNodeInfo_Parms, HoudiniSession), Z_Construct_UScriptStruct_FHoudiniSession, METADATA_PARAMS(nullptr, 0) }; // 2140469190
+	const UECodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfo_Statics::NewProp_NodeId = { "NodeId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(CustomHEnginePluginBPLibrary_eventHoudiniGetNodeInfo_Parms, NodeId), METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfo_Statics::NewProp_NodeInfo = { "NodeInfo", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(CustomHEnginePluginBPLibrary_eventHoudiniGetNodeInfo_Parms, NodeInfo), Z_Construct_UScriptStruct_FHoudiniNodeInfo, METADATA_PARAMS(nullptr, 0) }; // 2901690084
+	void Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfo_Statics::NewProp_ReturnValue_SetBit(void* Obj)
+	{
+		((CustomHEnginePluginBPLibrary_eventHoudiniGetNodeInfo_Parms*)Obj)->ReturnValue = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfo_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, sizeof(bool), sizeof(CustomHEnginePluginBPLibrary_eventHoudiniGetNodeInfo_Parms), &Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfo_Statics::NewProp_ReturnValue_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfo_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfo_Statics::NewProp_HoudiniSession,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfo_Statics::NewProp_NodeId,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfo_Statics::NewProp_NodeInfo,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfo_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfo_Statics::Function_MetaDataParams[] = {
+		{ "Category", "CustomHEnginePluginBPLibrary | Geometry Getters" },
+		{ "Comment", "//    Fill an HAPI_NodeInfo struct.\n" },
+		{ "ModuleRelativePath", "Public/CustomHEnginePluginBPLibrary.h" },
+		{ "ToolTip", "Fill an HAPI_NodeInfo struct." },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfo_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCustomHEnginePluginBPLibrary, nullptr, "HoudiniGetNodeInfo", nullptr, nullptr, sizeof(Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfo_Statics::CustomHEnginePluginBPLibrary_eventHoudiniGetNodeInfo_Parms), Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfo_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfo_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14422401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfo_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfo_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfo()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfo_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfoSubData_Statics
+	{
+		struct CustomHEnginePluginBPLibrary_eventHoudiniGetNodeInfoSubData_Parms
+		{
+			FHoudiniNodeInfo NodeInfo;
+			int32 ParentNodeId;
+			bool bIsValid;
+			int32 UniqueHoudiniNodeId;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_NodeInfo_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_NodeInfo;
+		static const UECodeGen_Private::FUnsizedIntPropertyParams NewProp_ParentNodeId;
+		static void NewProp_bIsValid_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsValid;
+		static const UECodeGen_Private::FUnsizedIntPropertyParams NewProp_UniqueHoudiniNodeId;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfoSubData_Statics::NewProp_NodeInfo_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfoSubData_Statics::NewProp_NodeInfo = { "NodeInfo", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(CustomHEnginePluginBPLibrary_eventHoudiniGetNodeInfoSubData_Parms, NodeInfo), Z_Construct_UScriptStruct_FHoudiniNodeInfo, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfoSubData_Statics::NewProp_NodeInfo_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfoSubData_Statics::NewProp_NodeInfo_MetaData)) }; // 2901690084
+	const UECodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfoSubData_Statics::NewProp_ParentNodeId = { "ParentNodeId", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(CustomHEnginePluginBPLibrary_eventHoudiniGetNodeInfoSubData_Parms, ParentNodeId), METADATA_PARAMS(nullptr, 0) };
+	void Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfoSubData_Statics::NewProp_bIsValid_SetBit(void* Obj)
+	{
+		((CustomHEnginePluginBPLibrary_eventHoudiniGetNodeInfoSubData_Parms*)Obj)->bIsValid = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfoSubData_Statics::NewProp_bIsValid = { "bIsValid", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, sizeof(bool), sizeof(CustomHEnginePluginBPLibrary_eventHoudiniGetNodeInfoSubData_Parms), &Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfoSubData_Statics::NewProp_bIsValid_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfoSubData_Statics::NewProp_UniqueHoudiniNodeId = { "UniqueHoudiniNodeId", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(CustomHEnginePluginBPLibrary_eventHoudiniGetNodeInfoSubData_Parms, UniqueHoudiniNodeId), METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfoSubData_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfoSubData_Statics::NewProp_NodeInfo,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfoSubData_Statics::NewProp_ParentNodeId,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfoSubData_Statics::NewProp_bIsValid,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfoSubData_Statics::NewProp_UniqueHoudiniNodeId,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfoSubData_Statics::Function_MetaDataParams[] = {
+		{ "Category", "CustomHEnginePluginBPLibrary | Geometry Getters" },
+		{ "Comment", "//    Get info from node info.\n" },
+		{ "ModuleRelativePath", "Public/CustomHEnginePluginBPLibrary.h" },
+		{ "ToolTip", "Get info from node info." },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfoSubData_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCustomHEnginePluginBPLibrary, nullptr, "HoudiniGetNodeInfoSubData", nullptr, nullptr, sizeof(Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfoSubData_Statics::CustomHEnginePluginBPLibrary_eventHoudiniGetNodeInfoSubData_Parms), Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfoSubData_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfoSubData_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14422401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfoSubData_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfoSubData_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfoSubData()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfoSubData_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetOBJNodeTransform_Statics
+	{
+		struct CustomHEnginePluginBPLibrary_eventHoudiniGetOBJNodeTransform_Parms
+		{
+			FHoudiniSession HoudiniSession;
+			int32 OBJNodeId;
+			int32 RelativeNOBJNodeId;
+			FTransform Transform;
+			bool ReturnValue;
+		};
+		static const UECodeGen_Private::FStructPropertyParams NewProp_HoudiniSession;
+		static const UECodeGen_Private::FUnsizedIntPropertyParams NewProp_OBJNodeId;
+		static const UECodeGen_Private::FUnsizedIntPropertyParams NewProp_RelativeNOBJNodeId;
+		static const UECodeGen_Private::FStructPropertyParams NewProp_Transform;
+		static void NewProp_ReturnValue_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_ReturnValue;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetOBJNodeTransform_Statics::NewProp_HoudiniSession = { "HoudiniSession", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(CustomHEnginePluginBPLibrary_eventHoudiniGetOBJNodeTransform_Parms, HoudiniSession), Z_Construct_UScriptStruct_FHoudiniSession, METADATA_PARAMS(nullptr, 0) }; // 2140469190
+	const UECodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetOBJNodeTransform_Statics::NewProp_OBJNodeId = { "OBJNodeId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(CustomHEnginePluginBPLibrary_eventHoudiniGetOBJNodeTransform_Parms, OBJNodeId), METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetOBJNodeTransform_Statics::NewProp_RelativeNOBJNodeId = { "RelativeNOBJNodeId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(CustomHEnginePluginBPLibrary_eventHoudiniGetOBJNodeTransform_Parms, RelativeNOBJNodeId), METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetOBJNodeTransform_Statics::NewProp_Transform = { "Transform", nullptr, (EPropertyFlags)0x0010000000000180, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(CustomHEnginePluginBPLibrary_eventHoudiniGetOBJNodeTransform_Parms, Transform), Z_Construct_UScriptStruct_FTransform, METADATA_PARAMS(nullptr, 0) };
+	void Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetOBJNodeTransform_Statics::NewProp_ReturnValue_SetBit(void* Obj)
+	{
+		((CustomHEnginePluginBPLibrary_eventHoudiniGetOBJNodeTransform_Parms*)Obj)->ReturnValue = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetOBJNodeTransform_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, sizeof(bool), sizeof(CustomHEnginePluginBPLibrary_eventHoudiniGetOBJNodeTransform_Parms), &Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetOBJNodeTransform_Statics::NewProp_ReturnValue_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetOBJNodeTransform_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetOBJNodeTransform_Statics::NewProp_HoudiniSession,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetOBJNodeTransform_Statics::NewProp_OBJNodeId,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetOBJNodeTransform_Statics::NewProp_RelativeNOBJNodeId,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetOBJNodeTransform_Statics::NewProp_Transform,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetOBJNodeTransform_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetOBJNodeTransform_Statics::Function_MetaDataParams[] = {
+		{ "Category", "CustomHEnginePluginBPLibrary | Objects" },
+		{ "Comment", "//\x09 Get the transform of an OBJ node.\n" },
+		{ "ModuleRelativePath", "Public/CustomHEnginePluginBPLibrary.h" },
+		{ "ToolTip", "Get the transform of an OBJ node." },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetOBJNodeTransform_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCustomHEnginePluginBPLibrary, nullptr, "HoudiniGetOBJNodeTransform", nullptr, nullptr, sizeof(Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetOBJNodeTransform_Statics::CustomHEnginePluginBPLibrary_eventHoudiniGetOBJNodeTransform_Parms), Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetOBJNodeTransform_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetOBJNodeTransform_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04C22401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetOBJNodeTransform_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetOBJNodeTransform_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetOBJNodeTransform()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetOBJNodeTransform_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	struct Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetPartInfo_Statics
 	{
 		struct CustomHEnginePluginBPLibrary_eventHoudiniGetPartInfo_Parms
@@ -2228,6 +2444,66 @@ void EmptyLinkFunctionForGeneratedCodeCustomHEnginePluginBPLibrary() {}
 		}
 		return ReturnFunction;
 	}
+	struct Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniSetOBJNodeTransform_Statics
+	{
+		struct CustomHEnginePluginBPLibrary_eventHoudiniSetOBJNodeTransform_Parms
+		{
+			FHoudiniSession HoudiniSession;
+			int32 OBJNodeId;
+			FTransform Transform;
+			bool ReturnValue;
+		};
+		static const UECodeGen_Private::FStructPropertyParams NewProp_HoudiniSession;
+		static const UECodeGen_Private::FUnsizedIntPropertyParams NewProp_OBJNodeId;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_Transform_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_Transform;
+		static void NewProp_ReturnValue_SetBit(void* Obj);
+		static const UECodeGen_Private::FBoolPropertyParams NewProp_ReturnValue;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniSetOBJNodeTransform_Statics::NewProp_HoudiniSession = { "HoudiniSession", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(CustomHEnginePluginBPLibrary_eventHoudiniSetOBJNodeTransform_Parms, HoudiniSession), Z_Construct_UScriptStruct_FHoudiniSession, METADATA_PARAMS(nullptr, 0) }; // 2140469190
+	const UECodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniSetOBJNodeTransform_Statics::NewProp_OBJNodeId = { "OBJNodeId", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(CustomHEnginePluginBPLibrary_eventHoudiniSetOBJNodeTransform_Parms, OBJNodeId), METADATA_PARAMS(nullptr, 0) };
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniSetOBJNodeTransform_Statics::NewProp_Transform_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniSetOBJNodeTransform_Statics::NewProp_Transform = { "Transform", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(CustomHEnginePluginBPLibrary_eventHoudiniSetOBJNodeTransform_Parms, Transform), Z_Construct_UScriptStruct_FTransform, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniSetOBJNodeTransform_Statics::NewProp_Transform_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniSetOBJNodeTransform_Statics::NewProp_Transform_MetaData)) };
+	void Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniSetOBJNodeTransform_Statics::NewProp_ReturnValue_SetBit(void* Obj)
+	{
+		((CustomHEnginePluginBPLibrary_eventHoudiniSetOBJNodeTransform_Parms*)Obj)->ReturnValue = 1;
+	}
+	const UECodeGen_Private::FBoolPropertyParams Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniSetOBJNodeTransform_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, sizeof(bool), sizeof(CustomHEnginePluginBPLibrary_eventHoudiniSetOBJNodeTransform_Parms), &Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniSetOBJNodeTransform_Statics::NewProp_ReturnValue_SetBit, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniSetOBJNodeTransform_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniSetOBJNodeTransform_Statics::NewProp_HoudiniSession,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniSetOBJNodeTransform_Statics::NewProp_OBJNodeId,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniSetOBJNodeTransform_Statics::NewProp_Transform,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniSetOBJNodeTransform_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniSetOBJNodeTransform_Statics::Function_MetaDataParams[] = {
+		{ "Category", "CustomHEnginePluginBPLibrary | Objects" },
+		{ "Comment", "//   Set the transform of an individual object. Note that the object nodes have to either be editable or have their transform parameters exposed at the asset level. This won't work otherwise.\n" },
+		{ "ModuleRelativePath", "Public/CustomHEnginePluginBPLibrary.h" },
+		{ "ToolTip", "Set the transform of an individual object. Note that the object nodes have to either be editable or have their transform parameters exposed at the asset level. This won't work otherwise." },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniSetOBJNodeTransform_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCustomHEnginePluginBPLibrary, nullptr, "HoudiniSetOBJNodeTransform", nullptr, nullptr, sizeof(Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniSetOBJNodeTransform_Statics::CustomHEnginePluginBPLibrary_eventHoudiniSetOBJNodeTransform_Parms), Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniSetOBJNodeTransform_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniSetOBJNodeTransform_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04C22401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniSetOBJNodeTransform_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniSetOBJNodeTransform_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniSetOBJNodeTransform()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniSetOBJNodeTransform_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
 	struct Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniSetPartInfo_Statics
 	{
 		struct CustomHEnginePluginBPLibrary_eventHoudiniSetPartInfo_Parms
@@ -2431,6 +2707,9 @@ void EmptyLinkFunctionForGeneratedCodeCustomHEnginePluginBPLibrary() {}
 		{ &Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetAttributeIntData, "HoudiniGetAttributeIntData" }, // 2620648542
 		{ &Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetAttributeStringData, "HoudiniGetAttributeStringData" }, // 2809523961
 		{ &Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetComposedChildNodeList, "HoudiniGetComposedChildNodeList" }, // 3765870664
+		{ &Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfo, "HoudiniGetNodeInfo" }, // 3943114690
+		{ &Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetNodeInfoSubData, "HoudiniGetNodeInfoSubData" }, // 103835228
+		{ &Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetOBJNodeTransform, "HoudiniGetOBJNodeTransform" }, // 1606176036
 		{ &Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetPartInfo, "HoudiniGetPartInfo" }, // 1554859774
 		{ &Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetPartInfoSubData, "HoudiniGetPartInfoSubData" }, // 592884979
 		{ &Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniGetVertexList, "HoudiniGetVertexList" }, // 3595536484
@@ -2440,6 +2719,7 @@ void EmptyLinkFunctionForGeneratedCodeCustomHEnginePluginBPLibrary() {}
 		{ &Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniLoadAssetLibraryFromFile, "HoudiniLoadAssetLibraryFromFile" }, // 1097871286
 		{ &Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniQueryNodeInput, "HoudiniQueryNodeInput" }, // 3647246778
 		{ &Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniSaveHIPFile, "HoudiniSaveHIPFile" }, // 2477449441
+		{ &Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniSetOBJNodeTransform, "HoudiniSetOBJNodeTransform" }, // 919390650
 		{ &Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniSetPartInfo, "HoudiniSetPartInfo" }, // 3734068564
 		{ &Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_HoudiniSetVertexListAndFaceCounts, "HoudiniSetVertexListAndFaceCounts" }, // 2686272280
 		{ &Z_Construct_UFunction_UCustomHEnginePluginBPLibrary_StartServerAndCreateSession, "StartServerAndCreateSession" }, // 1549443428
@@ -2489,9 +2769,9 @@ void EmptyLinkFunctionForGeneratedCodeCustomHEnginePluginBPLibrary() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_CustomHEnginePluginBPLibrary_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UCustomHEnginePluginBPLibrary, UCustomHEnginePluginBPLibrary::StaticClass, TEXT("UCustomHEnginePluginBPLibrary"), &Z_Registration_Info_UClass_UCustomHEnginePluginBPLibrary, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCustomHEnginePluginBPLibrary), 3016715725U) },
+		{ Z_Construct_UClass_UCustomHEnginePluginBPLibrary, UCustomHEnginePluginBPLibrary::StaticClass, TEXT("UCustomHEnginePluginBPLibrary"), &Z_Registration_Info_UClass_UCustomHEnginePluginBPLibrary, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCustomHEnginePluginBPLibrary), 3035028016U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_CustomHEnginePluginBPLibrary_h_3737429889(TEXT("/Script/CustomHEnginePlugin"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_CustomHEnginePluginBPLibrary_h_663211313(TEXT("/Script/CustomHEnginePlugin"),
 		Z_CompiledInDeferFile_FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_CustomHEnginePluginBPLibrary_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_CustomHEnginePluginBPLibrary_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

@@ -15,7 +15,8 @@ UCLASS()
 class CUSTOMHENGINEPLUGIN_API UCustomHEngineUtilsLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
-	
+
+public:
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, meta = (ToolTip = "Get mesh data drom unreal engine."), Category = "CustomHEnginePluginBPLibrary | Mesh")
 	static bool GetUnrealMeshData(UStaticMesh* StaticMesh, TArray<FVector>& PositionList, TArray<int>& VertexList, TArray<int>& FaceList, TArray<FVector>& NormalList, TArray<FVector>& TangentList, TArray<FVector2D>& UVList, TArray<int>& SectionIndexList, TArray<UMaterialInterface*>& MaterialList);
@@ -43,6 +44,21 @@ class CUSTOMHENGINEPLUGIN_API UCustomHEngineUtilsLibrary : public UBlueprintFunc
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, meta = (ToolTip = "Split vertex list into multiple vertex lists by prim string attribute."), Category = "CustomHEnginePluginBPLibrary | Mesh")
 	static bool SplitVertexListByStringAttributes(const TArray<int>& VertexList, const TArray<FString>& StringAttributeList, TArray<FVertexListStruct>& SplittedVertexLists);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, meta = (ToolTip = "Convert a unreal transform to houdini transform"), Category = "CustomHEnginePluginBPLibrary | Utilities")
+	static FHoudiniTransform UnrealTransfromToHoudiniTransform(const FTransform& UnrealTransform);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, meta = (ToolTip = "Convert a unreal transform to houdini transform euler"), Category = "CustomHEnginePluginBPLibrary | Utilities")
+	static FHoudiniTransformEuler UnrealTransfromToHoudiniTransformEuler(const FTransform& UnrealTransform);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, meta = (ToolTip = "Convert a Houdini transform to Unreal transform"), Category = "CustomHEnginePluginBPLibrary | Utilities")
+	static FTransform HoudiniTransfromToUnrealTransform(const FHoudiniTransform& HoudiniTransform);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, meta = (ToolTip = "Convert a Houdini transform euler to Unreal transform"), Category = "CustomHEnginePluginBPLibrary | Utilities")
+	static FTransform HouidniTransformEulerToUnrealTransform(FHoudiniSession HoudiniSession, const FHoudiniTransformEuler& HoudiniTransformEuler);
+
+
+
 
 
 };

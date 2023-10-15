@@ -16,6 +16,7 @@ enum class EHoudiniPartType : uint8;
 enum class EHoudiniStorageType : uint8;
 struct FHoudiniAttributeInfo;
 struct FHoudiniCookOptions;
+struct FHoudiniNodeInfo;
 struct FHoudiniPartInfo;
 struct FHoudiniSession;
 #ifdef CUSTOMHENGINEPLUGIN_CustomHEnginePluginBPLibrary_generated_h
@@ -26,6 +27,10 @@ struct FHoudiniSession;
 #define FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_CustomHEnginePluginBPLibrary_h_29_SPARSE_DATA
 #define FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_CustomHEnginePluginBPLibrary_h_29_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execHoudiniGetOBJNodeTransform); \
+	DECLARE_FUNCTION(execHoudiniSetOBJNodeTransform); \
+	DECLARE_FUNCTION(execHoudiniGetNodeInfoSubData); \
+	DECLARE_FUNCTION(execHoudiniGetNodeInfo); \
 	DECLARE_FUNCTION(execHoudiniGetPartInfoSubData); \
 	DECLARE_FUNCTION(execHoudiniGetPartInfo); \
 	DECLARE_FUNCTION(execHoudiniGetVertexList); \
@@ -64,6 +69,10 @@ struct FHoudiniSession;
 
 #define FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_CustomHEnginePluginBPLibrary_h_29_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execHoudiniGetOBJNodeTransform); \
+	DECLARE_FUNCTION(execHoudiniSetOBJNodeTransform); \
+	DECLARE_FUNCTION(execHoudiniGetNodeInfoSubData); \
+	DECLARE_FUNCTION(execHoudiniGetNodeInfo); \
 	DECLARE_FUNCTION(execHoudiniGetPartInfoSubData); \
 	DECLARE_FUNCTION(execHoudiniGetPartInfo); \
 	DECLARE_FUNCTION(execHoudiniGetVertexList); \

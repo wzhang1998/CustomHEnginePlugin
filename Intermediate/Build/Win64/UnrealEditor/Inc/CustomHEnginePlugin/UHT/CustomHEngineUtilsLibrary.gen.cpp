@@ -11,10 +11,14 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeCustomHEngineUtilsLibrary() {}
 // Cross Module References
+	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FTransform();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector2D();
 	CUSTOMHENGINEPLUGIN_API UClass* Z_Construct_UClass_UCustomHEngineUtilsLibrary();
 	CUSTOMHENGINEPLUGIN_API UClass* Z_Construct_UClass_UCustomHEngineUtilsLibrary_NoRegister();
+	CUSTOMHENGINEPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FHoudiniSession();
+	CUSTOMHENGINEPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FHoudiniTransform();
+	CUSTOMHENGINEPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FHoudiniTransformEuler();
 	CUSTOMHENGINEPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FVertexListStruct();
 	ENGINE_API UClass* Z_Construct_UClass_UBlueprintFunctionLibrary();
 	ENGINE_API UClass* Z_Construct_UClass_UMaterialInterface_NoRegister();
@@ -22,6 +26,39 @@ void EmptyLinkFunctionForGeneratedCodeCustomHEngineUtilsLibrary() {}
 	PROCEDURALMESHCOMPONENT_API UScriptStruct* Z_Construct_UScriptStruct_FProcMeshTangent();
 	UPackage* Z_Construct_UPackage__Script_CustomHEnginePlugin();
 // End Cross Module References
+	DEFINE_FUNCTION(UCustomHEngineUtilsLibrary::execHouidniTransformEulerToUnrealTransform)
+	{
+		P_GET_STRUCT(FHoudiniSession,Z_Param_HoudiniSession);
+		P_GET_STRUCT_REF(FHoudiniTransformEuler,Z_Param_Out_HoudiniTransformEuler);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(FTransform*)Z_Param__Result=UCustomHEngineUtilsLibrary::HouidniTransformEulerToUnrealTransform(Z_Param_HoudiniSession,Z_Param_Out_HoudiniTransformEuler);
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(UCustomHEngineUtilsLibrary::execHoudiniTransfromToUnrealTransform)
+	{
+		P_GET_STRUCT_REF(FHoudiniTransform,Z_Param_Out_HoudiniTransform);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(FTransform*)Z_Param__Result=UCustomHEngineUtilsLibrary::HoudiniTransfromToUnrealTransform(Z_Param_Out_HoudiniTransform);
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(UCustomHEngineUtilsLibrary::execUnrealTransfromToHoudiniTransformEuler)
+	{
+		P_GET_STRUCT_REF(FTransform,Z_Param_Out_UnrealTransform);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(FHoudiniTransformEuler*)Z_Param__Result=UCustomHEngineUtilsLibrary::UnrealTransfromToHoudiniTransformEuler(Z_Param_Out_UnrealTransform);
+		P_NATIVE_END;
+	}
+	DEFINE_FUNCTION(UCustomHEngineUtilsLibrary::execUnrealTransfromToHoudiniTransform)
+	{
+		P_GET_STRUCT_REF(FTransform,Z_Param_Out_UnrealTransform);
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		*(FHoudiniTransform*)Z_Param__Result=UCustomHEngineUtilsLibrary::UnrealTransfromToHoudiniTransform(Z_Param_Out_UnrealTransform);
+		P_NATIVE_END;
+	}
 	DEFINE_FUNCTION(UCustomHEngineUtilsLibrary::execSplitVertexListByStringAttributes)
 	{
 		P_GET_TARRAY_REF(int32,Z_Param_Out_VertexList);
@@ -127,9 +164,13 @@ void EmptyLinkFunctionForGeneratedCodeCustomHEngineUtilsLibrary() {}
 			{ "FloatListToVector2DList", &UCustomHEngineUtilsLibrary::execFloatListToVector2DList },
 			{ "FloatListToVectorList", &UCustomHEngineUtilsLibrary::execFloatListToVectorList },
 			{ "GetUnrealMeshData", &UCustomHEngineUtilsLibrary::execGetUnrealMeshData },
+			{ "HoudiniTransfromToUnrealTransform", &UCustomHEngineUtilsLibrary::execHoudiniTransfromToUnrealTransform },
+			{ "HouidniTransformEulerToUnrealTransform", &UCustomHEngineUtilsLibrary::execHouidniTransformEulerToUnrealTransform },
 			{ "ReverseVertexListOrder", &UCustomHEngineUtilsLibrary::execReverseVertexListOrder },
 			{ "SplitVertexList", &UCustomHEngineUtilsLibrary::execSplitVertexList },
 			{ "SplitVertexListByStringAttributes", &UCustomHEngineUtilsLibrary::execSplitVertexListByStringAttributes },
+			{ "UnrealTransfromToHoudiniTransform", &UCustomHEngineUtilsLibrary::execUnrealTransfromToHoudiniTransform },
+			{ "UnrealTransfromToHoudiniTransformEuler", &UCustomHEngineUtilsLibrary::execUnrealTransfromToHoudiniTransformEuler },
 			{ "Vector2DListToFloatList", &UCustomHEngineUtilsLibrary::execVector2DListToFloatList },
 			{ "VectorListToFloatList", &UCustomHEngineUtilsLibrary::execVectorListToFloatList },
 		};
@@ -206,7 +247,7 @@ void EmptyLinkFunctionForGeneratedCodeCustomHEngineUtilsLibrary() {}
 		{ "ToolTip", "Convert float list to procmeshtangent list." },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToProcMeshTangentList_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCustomHEngineUtilsLibrary, nullptr, "FloatListToProcMeshTangentList", nullptr, nullptr, sizeof(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToProcMeshTangentList_Statics::CustomHEngineUtilsLibrary_eventFloatListToProcMeshTangentList_Parms), Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToProcMeshTangentList_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToProcMeshTangentList_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14442401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToProcMeshTangentList_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToProcMeshTangentList_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToProcMeshTangentList_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCustomHEngineUtilsLibrary, nullptr, "FloatListToProcMeshTangentList", nullptr, nullptr, sizeof(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToProcMeshTangentList_Statics::CustomHEngineUtilsLibrary_eventFloatListToProcMeshTangentList_Parms), Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToProcMeshTangentList_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToProcMeshTangentList_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14422401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToProcMeshTangentList_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToProcMeshTangentList_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToProcMeshTangentList()
 	{
 		static UFunction* ReturnFunction = nullptr;
@@ -277,7 +318,7 @@ void EmptyLinkFunctionForGeneratedCodeCustomHEngineUtilsLibrary() {}
 		{ "ToolTip", "Convert float list to vector 2D list." },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToVector2DList_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCustomHEngineUtilsLibrary, nullptr, "FloatListToVector2DList", nullptr, nullptr, sizeof(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToVector2DList_Statics::CustomHEngineUtilsLibrary_eventFloatListToVector2DList_Parms), Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToVector2DList_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToVector2DList_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14442401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToVector2DList_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToVector2DList_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToVector2DList_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCustomHEngineUtilsLibrary, nullptr, "FloatListToVector2DList", nullptr, nullptr, sizeof(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToVector2DList_Statics::CustomHEngineUtilsLibrary_eventFloatListToVector2DList_Parms), Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToVector2DList_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToVector2DList_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14422401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToVector2DList_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToVector2DList_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToVector2DList()
 	{
 		static UFunction* ReturnFunction = nullptr;
@@ -353,7 +394,7 @@ void EmptyLinkFunctionForGeneratedCodeCustomHEngineUtilsLibrary() {}
 		{ "ToolTip", "Convert float list to vector list." },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToVectorList_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCustomHEngineUtilsLibrary, nullptr, "FloatListToVectorList", nullptr, nullptr, sizeof(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToVectorList_Statics::CustomHEngineUtilsLibrary_eventFloatListToVectorList_Parms), Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToVectorList_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToVectorList_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14442401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToVectorList_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToVectorList_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToVectorList_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCustomHEngineUtilsLibrary, nullptr, "FloatListToVectorList", nullptr, nullptr, sizeof(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToVectorList_Statics::CustomHEngineUtilsLibrary_eventFloatListToVectorList_Parms), Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToVectorList_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToVectorList_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14422401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToVectorList_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToVectorList_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToVectorList()
 	{
 		static UFunction* ReturnFunction = nullptr;
@@ -452,13 +493,109 @@ void EmptyLinkFunctionForGeneratedCodeCustomHEngineUtilsLibrary() {}
 		{ "ToolTip", "Get mesh data drom unreal engine." },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_GetUnrealMeshData_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCustomHEngineUtilsLibrary, nullptr, "GetUnrealMeshData", nullptr, nullptr, sizeof(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_GetUnrealMeshData_Statics::CustomHEngineUtilsLibrary_eventGetUnrealMeshData_Parms), Z_Construct_UFunction_UCustomHEngineUtilsLibrary_GetUnrealMeshData_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_GetUnrealMeshData_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14442401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_GetUnrealMeshData_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_GetUnrealMeshData_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_GetUnrealMeshData_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCustomHEngineUtilsLibrary, nullptr, "GetUnrealMeshData", nullptr, nullptr, sizeof(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_GetUnrealMeshData_Statics::CustomHEngineUtilsLibrary_eventGetUnrealMeshData_Parms), Z_Construct_UFunction_UCustomHEngineUtilsLibrary_GetUnrealMeshData_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_GetUnrealMeshData_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14422401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_GetUnrealMeshData_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_GetUnrealMeshData_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UCustomHEngineUtilsLibrary_GetUnrealMeshData()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UCustomHEngineUtilsLibrary_GetUnrealMeshData_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HoudiniTransfromToUnrealTransform_Statics
+	{
+		struct CustomHEngineUtilsLibrary_eventHoudiniTransfromToUnrealTransform_Parms
+		{
+			FHoudiniTransform HoudiniTransform;
+			FTransform ReturnValue;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_HoudiniTransform_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_HoudiniTransform;
+		static const UECodeGen_Private::FStructPropertyParams NewProp_ReturnValue;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HoudiniTransfromToUnrealTransform_Statics::NewProp_HoudiniTransform_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HoudiniTransfromToUnrealTransform_Statics::NewProp_HoudiniTransform = { "HoudiniTransform", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(CustomHEngineUtilsLibrary_eventHoudiniTransfromToUnrealTransform_Parms, HoudiniTransform), Z_Construct_UScriptStruct_FHoudiniTransform, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HoudiniTransfromToUnrealTransform_Statics::NewProp_HoudiniTransform_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HoudiniTransfromToUnrealTransform_Statics::NewProp_HoudiniTransform_MetaData)) }; // 364164492
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HoudiniTransfromToUnrealTransform_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(CustomHEngineUtilsLibrary_eventHoudiniTransfromToUnrealTransform_Parms, ReturnValue), Z_Construct_UScriptStruct_FTransform, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HoudiniTransfromToUnrealTransform_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HoudiniTransfromToUnrealTransform_Statics::NewProp_HoudiniTransform,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HoudiniTransfromToUnrealTransform_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HoudiniTransfromToUnrealTransform_Statics::Function_MetaDataParams[] = {
+		{ "Category", "CustomHEnginePluginBPLibrary | Utilities" },
+		{ "ModuleRelativePath", "Public/CustomHEngineUtilsLibrary.h" },
+		{ "ToolTip", "Convert a Houdini transform to Unreal transform" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HoudiniTransfromToUnrealTransform_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCustomHEngineUtilsLibrary, nullptr, "HoudiniTransfromToUnrealTransform", nullptr, nullptr, sizeof(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HoudiniTransfromToUnrealTransform_Statics::CustomHEngineUtilsLibrary_eventHoudiniTransfromToUnrealTransform_Parms), Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HoudiniTransfromToUnrealTransform_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HoudiniTransfromToUnrealTransform_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14C22401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HoudiniTransfromToUnrealTransform_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HoudiniTransfromToUnrealTransform_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HoudiniTransfromToUnrealTransform()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HoudiniTransfromToUnrealTransform_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HouidniTransformEulerToUnrealTransform_Statics
+	{
+		struct CustomHEngineUtilsLibrary_eventHouidniTransformEulerToUnrealTransform_Parms
+		{
+			FHoudiniSession HoudiniSession;
+			FHoudiniTransformEuler HoudiniTransformEuler;
+			FTransform ReturnValue;
+		};
+		static const UECodeGen_Private::FStructPropertyParams NewProp_HoudiniSession;
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_HoudiniTransformEuler_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_HoudiniTransformEuler;
+		static const UECodeGen_Private::FStructPropertyParams NewProp_ReturnValue;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HouidniTransformEulerToUnrealTransform_Statics::NewProp_HoudiniSession = { "HoudiniSession", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(CustomHEngineUtilsLibrary_eventHouidniTransformEulerToUnrealTransform_Parms, HoudiniSession), Z_Construct_UScriptStruct_FHoudiniSession, METADATA_PARAMS(nullptr, 0) }; // 2140469190
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HouidniTransformEulerToUnrealTransform_Statics::NewProp_HoudiniTransformEuler_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HouidniTransformEulerToUnrealTransform_Statics::NewProp_HoudiniTransformEuler = { "HoudiniTransformEuler", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(CustomHEngineUtilsLibrary_eventHouidniTransformEulerToUnrealTransform_Parms, HoudiniTransformEuler), Z_Construct_UScriptStruct_FHoudiniTransformEuler, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HouidniTransformEulerToUnrealTransform_Statics::NewProp_HoudiniTransformEuler_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HouidniTransformEulerToUnrealTransform_Statics::NewProp_HoudiniTransformEuler_MetaData)) }; // 2028057573
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HouidniTransformEulerToUnrealTransform_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(CustomHEngineUtilsLibrary_eventHouidniTransformEulerToUnrealTransform_Parms, ReturnValue), Z_Construct_UScriptStruct_FTransform, METADATA_PARAMS(nullptr, 0) };
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HouidniTransformEulerToUnrealTransform_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HouidniTransformEulerToUnrealTransform_Statics::NewProp_HoudiniSession,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HouidniTransformEulerToUnrealTransform_Statics::NewProp_HoudiniTransformEuler,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HouidniTransformEulerToUnrealTransform_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HouidniTransformEulerToUnrealTransform_Statics::Function_MetaDataParams[] = {
+		{ "Category", "CustomHEnginePluginBPLibrary | Utilities" },
+		{ "ModuleRelativePath", "Public/CustomHEngineUtilsLibrary.h" },
+		{ "ToolTip", "Convert a Houdini transform euler to Unreal transform" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HouidniTransformEulerToUnrealTransform_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCustomHEngineUtilsLibrary, nullptr, "HouidniTransformEulerToUnrealTransform", nullptr, nullptr, sizeof(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HouidniTransformEulerToUnrealTransform_Statics::CustomHEngineUtilsLibrary_eventHouidniTransformEulerToUnrealTransform_Parms), Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HouidniTransformEulerToUnrealTransform_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HouidniTransformEulerToUnrealTransform_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14C22401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HouidniTransformEulerToUnrealTransform_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HouidniTransformEulerToUnrealTransform_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HouidniTransformEulerToUnrealTransform()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HouidniTransformEulerToUnrealTransform_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -498,7 +635,7 @@ void EmptyLinkFunctionForGeneratedCodeCustomHEngineUtilsLibrary() {}
 		{ "ToolTip", "Reverse vertex list." },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_ReverseVertexListOrder_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCustomHEngineUtilsLibrary, nullptr, "ReverseVertexListOrder", nullptr, nullptr, sizeof(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_ReverseVertexListOrder_Statics::CustomHEngineUtilsLibrary_eventReverseVertexListOrder_Parms), Z_Construct_UFunction_UCustomHEngineUtilsLibrary_ReverseVertexListOrder_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_ReverseVertexListOrder_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04442401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_ReverseVertexListOrder_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_ReverseVertexListOrder_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_ReverseVertexListOrder_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCustomHEngineUtilsLibrary, nullptr, "ReverseVertexListOrder", nullptr, nullptr, sizeof(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_ReverseVertexListOrder_Statics::CustomHEngineUtilsLibrary_eventReverseVertexListOrder_Parms), Z_Construct_UFunction_UCustomHEngineUtilsLibrary_ReverseVertexListOrder_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_ReverseVertexListOrder_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04422401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_ReverseVertexListOrder_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_ReverseVertexListOrder_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UCustomHEngineUtilsLibrary_ReverseVertexListOrder()
 	{
 		static UFunction* ReturnFunction = nullptr;
@@ -574,7 +711,7 @@ void EmptyLinkFunctionForGeneratedCodeCustomHEngineUtilsLibrary() {}
 		{ "ToolTip", "Split vertex list into multiple vertex lists by prim section index attributes." },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexList_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCustomHEngineUtilsLibrary, nullptr, "SplitVertexList", nullptr, nullptr, sizeof(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexList_Statics::CustomHEngineUtilsLibrary_eventSplitVertexList_Parms), Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexList_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexList_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14442401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexList_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexList_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexList_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCustomHEngineUtilsLibrary, nullptr, "SplitVertexList", nullptr, nullptr, sizeof(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexList_Statics::CustomHEngineUtilsLibrary_eventSplitVertexList_Parms), Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexList_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexList_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14422401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexList_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexList_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexList()
 	{
 		static UFunction* ReturnFunction = nullptr;
@@ -650,13 +787,105 @@ void EmptyLinkFunctionForGeneratedCodeCustomHEngineUtilsLibrary() {}
 		{ "ToolTip", "Split vertex list into multiple vertex lists by prim string attribute." },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexListByStringAttributes_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCustomHEngineUtilsLibrary, nullptr, "SplitVertexListByStringAttributes", nullptr, nullptr, sizeof(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexListByStringAttributes_Statics::CustomHEngineUtilsLibrary_eventSplitVertexListByStringAttributes_Parms), Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexListByStringAttributes_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexListByStringAttributes_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14442401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexListByStringAttributes_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexListByStringAttributes_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexListByStringAttributes_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCustomHEngineUtilsLibrary, nullptr, "SplitVertexListByStringAttributes", nullptr, nullptr, sizeof(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexListByStringAttributes_Statics::CustomHEngineUtilsLibrary_eventSplitVertexListByStringAttributes_Parms), Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexListByStringAttributes_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexListByStringAttributes_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14422401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexListByStringAttributes_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexListByStringAttributes_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexListByStringAttributes()
 	{
 		static UFunction* ReturnFunction = nullptr;
 		if (!ReturnFunction)
 		{
 			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexListByStringAttributes_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransform_Statics
+	{
+		struct CustomHEngineUtilsLibrary_eventUnrealTransfromToHoudiniTransform_Parms
+		{
+			FTransform UnrealTransform;
+			FHoudiniTransform ReturnValue;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_UnrealTransform_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_UnrealTransform;
+		static const UECodeGen_Private::FStructPropertyParams NewProp_ReturnValue;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransform_Statics::NewProp_UnrealTransform_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransform_Statics::NewProp_UnrealTransform = { "UnrealTransform", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(CustomHEngineUtilsLibrary_eventUnrealTransfromToHoudiniTransform_Parms, UnrealTransform), Z_Construct_UScriptStruct_FTransform, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransform_Statics::NewProp_UnrealTransform_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransform_Statics::NewProp_UnrealTransform_MetaData)) };
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransform_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(CustomHEngineUtilsLibrary_eventUnrealTransfromToHoudiniTransform_Parms, ReturnValue), Z_Construct_UScriptStruct_FHoudiniTransform, METADATA_PARAMS(nullptr, 0) }; // 364164492
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransform_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransform_Statics::NewProp_UnrealTransform,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransform_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransform_Statics::Function_MetaDataParams[] = {
+		{ "Category", "CustomHEnginePluginBPLibrary | Utilities" },
+		{ "ModuleRelativePath", "Public/CustomHEngineUtilsLibrary.h" },
+		{ "ToolTip", "Convert a unreal transform to houdini transform" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransform_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCustomHEngineUtilsLibrary, nullptr, "UnrealTransfromToHoudiniTransform", nullptr, nullptr, sizeof(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransform_Statics::CustomHEngineUtilsLibrary_eventUnrealTransfromToHoudiniTransform_Parms), Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransform_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransform_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14C22401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransform_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransform_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransform()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransform_Statics::FuncParams);
+		}
+		return ReturnFunction;
+	}
+	struct Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransformEuler_Statics
+	{
+		struct CustomHEngineUtilsLibrary_eventUnrealTransfromToHoudiniTransformEuler_Parms
+		{
+			FTransform UnrealTransform;
+			FHoudiniTransformEuler ReturnValue;
+		};
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam NewProp_UnrealTransform_MetaData[];
+#endif
+		static const UECodeGen_Private::FStructPropertyParams NewProp_UnrealTransform;
+		static const UECodeGen_Private::FStructPropertyParams NewProp_ReturnValue;
+		static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[];
+#endif
+		static const UECodeGen_Private::FFunctionParams FuncParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransformEuler_Statics::NewProp_UnrealTransform_MetaData[] = {
+		{ "NativeConst", "" },
+	};
+#endif
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransformEuler_Statics::NewProp_UnrealTransform = { "UnrealTransform", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(CustomHEngineUtilsLibrary_eventUnrealTransfromToHoudiniTransformEuler_Parms, UnrealTransform), Z_Construct_UScriptStruct_FTransform, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransformEuler_Statics::NewProp_UnrealTransform_MetaData, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransformEuler_Statics::NewProp_UnrealTransform_MetaData)) };
+	const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransformEuler_Statics::NewProp_ReturnValue = { "ReturnValue", nullptr, (EPropertyFlags)0x0010000000000580, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, 1, nullptr, nullptr, STRUCT_OFFSET(CustomHEngineUtilsLibrary_eventUnrealTransfromToHoudiniTransformEuler_Parms, ReturnValue), Z_Construct_UScriptStruct_FHoudiniTransformEuler, METADATA_PARAMS(nullptr, 0) }; // 2028057573
+	const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransformEuler_Statics::PropPointers[] = {
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransformEuler_Statics::NewProp_UnrealTransform,
+		(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransformEuler_Statics::NewProp_ReturnValue,
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransformEuler_Statics::Function_MetaDataParams[] = {
+		{ "Category", "CustomHEnginePluginBPLibrary | Utilities" },
+		{ "ModuleRelativePath", "Public/CustomHEngineUtilsLibrary.h" },
+		{ "ToolTip", "Convert a unreal transform to houdini transform euler" },
+	};
+#endif
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransformEuler_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCustomHEngineUtilsLibrary, nullptr, "UnrealTransfromToHoudiniTransformEuler", nullptr, nullptr, sizeof(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransformEuler_Statics::CustomHEngineUtilsLibrary_eventUnrealTransfromToHoudiniTransformEuler_Parms), Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransformEuler_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransformEuler_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14C22401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransformEuler_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransformEuler_Statics::Function_MetaDataParams)) };
+	UFunction* Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransformEuler()
+	{
+		static UFunction* ReturnFunction = nullptr;
+		if (!ReturnFunction)
+		{
+			UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransformEuler_Statics::FuncParams);
 		}
 		return ReturnFunction;
 	}
@@ -721,7 +950,7 @@ void EmptyLinkFunctionForGeneratedCodeCustomHEngineUtilsLibrary() {}
 		{ "ToolTip", "Convert vector 2D list to float list." },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_Vector2DListToFloatList_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCustomHEngineUtilsLibrary, nullptr, "Vector2DListToFloatList", nullptr, nullptr, sizeof(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_Vector2DListToFloatList_Statics::CustomHEngineUtilsLibrary_eventVector2DListToFloatList_Parms), Z_Construct_UFunction_UCustomHEngineUtilsLibrary_Vector2DListToFloatList_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_Vector2DListToFloatList_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14442401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_Vector2DListToFloatList_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_Vector2DListToFloatList_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_Vector2DListToFloatList_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCustomHEngineUtilsLibrary, nullptr, "Vector2DListToFloatList", nullptr, nullptr, sizeof(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_Vector2DListToFloatList_Statics::CustomHEngineUtilsLibrary_eventVector2DListToFloatList_Parms), Z_Construct_UFunction_UCustomHEngineUtilsLibrary_Vector2DListToFloatList_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_Vector2DListToFloatList_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14422401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_Vector2DListToFloatList_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_Vector2DListToFloatList_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UCustomHEngineUtilsLibrary_Vector2DListToFloatList()
 	{
 		static UFunction* ReturnFunction = nullptr;
@@ -797,7 +1026,7 @@ void EmptyLinkFunctionForGeneratedCodeCustomHEngineUtilsLibrary() {}
 		{ "ToolTip", "Convert vector list to float list." },
 	};
 #endif
-	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_VectorListToFloatList_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCustomHEngineUtilsLibrary, nullptr, "VectorListToFloatList", nullptr, nullptr, sizeof(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_VectorListToFloatList_Statics::CustomHEngineUtilsLibrary_eventVectorListToFloatList_Parms), Z_Construct_UFunction_UCustomHEngineUtilsLibrary_VectorListToFloatList_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_VectorListToFloatList_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14442401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_VectorListToFloatList_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_VectorListToFloatList_Statics::Function_MetaDataParams)) };
+	const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UCustomHEngineUtilsLibrary_VectorListToFloatList_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UCustomHEngineUtilsLibrary, nullptr, "VectorListToFloatList", nullptr, nullptr, sizeof(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_VectorListToFloatList_Statics::CustomHEngineUtilsLibrary_eventVectorListToFloatList_Parms), Z_Construct_UFunction_UCustomHEngineUtilsLibrary_VectorListToFloatList_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_VectorListToFloatList_Statics::PropPointers), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x14422401, 0, 0, METADATA_PARAMS(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_VectorListToFloatList_Statics::Function_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UFunction_UCustomHEngineUtilsLibrary_VectorListToFloatList_Statics::Function_MetaDataParams)) };
 	UFunction* Z_Construct_UFunction_UCustomHEngineUtilsLibrary_VectorListToFloatList()
 	{
 		static UFunction* ReturnFunction = nullptr;
@@ -827,15 +1056,19 @@ void EmptyLinkFunctionForGeneratedCodeCustomHEngineUtilsLibrary() {}
 		(UObject* (*)())Z_Construct_UPackage__Script_CustomHEnginePlugin,
 	};
 	const FClassFunctionLinkInfo Z_Construct_UClass_UCustomHEngineUtilsLibrary_Statics::FuncInfo[] = {
-		{ &Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToProcMeshTangentList, "FloatListToProcMeshTangentList" }, // 658268777
-		{ &Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToVector2DList, "FloatListToVector2DList" }, // 1571050745
-		{ &Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToVectorList, "FloatListToVectorList" }, // 985481568
-		{ &Z_Construct_UFunction_UCustomHEngineUtilsLibrary_GetUnrealMeshData, "GetUnrealMeshData" }, // 2014840347
-		{ &Z_Construct_UFunction_UCustomHEngineUtilsLibrary_ReverseVertexListOrder, "ReverseVertexListOrder" }, // 3805097558
-		{ &Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexList, "SplitVertexList" }, // 3911016401
-		{ &Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexListByStringAttributes, "SplitVertexListByStringAttributes" }, // 459949691
-		{ &Z_Construct_UFunction_UCustomHEngineUtilsLibrary_Vector2DListToFloatList, "Vector2DListToFloatList" }, // 2640860681
-		{ &Z_Construct_UFunction_UCustomHEngineUtilsLibrary_VectorListToFloatList, "VectorListToFloatList" }, // 1975842914
+		{ &Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToProcMeshTangentList, "FloatListToProcMeshTangentList" }, // 2654422824
+		{ &Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToVector2DList, "FloatListToVector2DList" }, // 2352039134
+		{ &Z_Construct_UFunction_UCustomHEngineUtilsLibrary_FloatListToVectorList, "FloatListToVectorList" }, // 3598717451
+		{ &Z_Construct_UFunction_UCustomHEngineUtilsLibrary_GetUnrealMeshData, "GetUnrealMeshData" }, // 967837461
+		{ &Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HoudiniTransfromToUnrealTransform, "HoudiniTransfromToUnrealTransform" }, // 3388735946
+		{ &Z_Construct_UFunction_UCustomHEngineUtilsLibrary_HouidniTransformEulerToUnrealTransform, "HouidniTransformEulerToUnrealTransform" }, // 83331478
+		{ &Z_Construct_UFunction_UCustomHEngineUtilsLibrary_ReverseVertexListOrder, "ReverseVertexListOrder" }, // 444774776
+		{ &Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexList, "SplitVertexList" }, // 503116023
+		{ &Z_Construct_UFunction_UCustomHEngineUtilsLibrary_SplitVertexListByStringAttributes, "SplitVertexListByStringAttributes" }, // 1568577657
+		{ &Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransform, "UnrealTransfromToHoudiniTransform" }, // 3787748638
+		{ &Z_Construct_UFunction_UCustomHEngineUtilsLibrary_UnrealTransfromToHoudiniTransformEuler, "UnrealTransfromToHoudiniTransformEuler" }, // 3384808137
+		{ &Z_Construct_UFunction_UCustomHEngineUtilsLibrary_Vector2DListToFloatList, "Vector2DListToFloatList" }, // 520980022
+		{ &Z_Construct_UFunction_UCustomHEngineUtilsLibrary_VectorListToFloatList, "VectorListToFloatList" }, // 2004759350
 	};
 #if WITH_METADATA
 	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UClass_UCustomHEngineUtilsLibrary_Statics::Class_MetaDataParams[] = {
@@ -882,9 +1115,9 @@ void EmptyLinkFunctionForGeneratedCodeCustomHEngineUtilsLibrary() {}
 		static const FClassRegisterCompiledInInfo ClassInfo[];
 	};
 	const FClassRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_CustomHEngineUtilsLibrary_h_Statics::ClassInfo[] = {
-		{ Z_Construct_UClass_UCustomHEngineUtilsLibrary, UCustomHEngineUtilsLibrary::StaticClass, TEXT("UCustomHEngineUtilsLibrary"), &Z_Registration_Info_UClass_UCustomHEngineUtilsLibrary, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCustomHEngineUtilsLibrary), 3342652738U) },
+		{ Z_Construct_UClass_UCustomHEngineUtilsLibrary, UCustomHEngineUtilsLibrary::StaticClass, TEXT("UCustomHEngineUtilsLibrary"), &Z_Registration_Info_UClass_UCustomHEngineUtilsLibrary, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UCustomHEngineUtilsLibrary), 1704747375U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_CustomHEngineUtilsLibrary_h_1287547839(TEXT("/Script/CustomHEnginePlugin"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_CustomHEngineUtilsLibrary_h_3684881324(TEXT("/Script/CustomHEnginePlugin"),
 		Z_CompiledInDeferFile_FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_CustomHEngineUtilsLibrary_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_CustomHEngineUtilsLibrary_h_Statics::ClassInfo),
 		nullptr, 0,
 		nullptr, 0);

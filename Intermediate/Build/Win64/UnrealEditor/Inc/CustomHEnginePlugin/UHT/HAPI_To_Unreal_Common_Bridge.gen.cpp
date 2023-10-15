@@ -17,8 +17,11 @@ void EmptyLinkFunctionForGeneratedCodeHAPI_To_Unreal_Common_Bridge() {}
 	CUSTOMHENGINEPLUGIN_API UEnum* Z_Construct_UEnum_CustomHEnginePlugin_EHoudiniStorageType();
 	CUSTOMHENGINEPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FHoudiniAttributeInfo();
 	CUSTOMHENGINEPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FHoudiniCookOptions();
+	CUSTOMHENGINEPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FHoudiniNodeInfo();
 	CUSTOMHENGINEPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FHoudiniPartInfo();
 	CUSTOMHENGINEPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FHoudiniSession();
+	CUSTOMHENGINEPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FHoudiniTransform();
+	CUSTOMHENGINEPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FHoudiniTransformEuler();
 	CUSTOMHENGINEPLUGIN_API UScriptStruct* Z_Construct_UScriptStruct_FVertexListStruct();
 	UPackage* Z_Construct_UPackage__Script_CustomHEnginePlugin();
 // End Cross Module References
@@ -782,6 +785,162 @@ template<> CUSTOMHENGINEPLUGIN_API UScriptStruct* StaticStruct<FVertexListStruct
 		}
 		return Z_Registration_Info_UScriptStruct_VertexListStruct.InnerSingleton;
 	}
+	static FStructRegistrationInfo Z_Registration_Info_UScriptStruct_HoudiniNodeInfo;
+class UScriptStruct* FHoudiniNodeInfo::StaticStruct()
+{
+	if (!Z_Registration_Info_UScriptStruct_HoudiniNodeInfo.OuterSingleton)
+	{
+		Z_Registration_Info_UScriptStruct_HoudiniNodeInfo.OuterSingleton = GetStaticStruct(Z_Construct_UScriptStruct_FHoudiniNodeInfo, (UObject*)Z_Construct_UPackage__Script_CustomHEnginePlugin(), TEXT("HoudiniNodeInfo"));
+	}
+	return Z_Registration_Info_UScriptStruct_HoudiniNodeInfo.OuterSingleton;
+}
+template<> CUSTOMHENGINEPLUGIN_API UScriptStruct* StaticStruct<FHoudiniNodeInfo>()
+{
+	return FHoudiniNodeInfo::StaticStruct();
+}
+	struct Z_Construct_UScriptStruct_FHoudiniNodeInfo_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Struct_MetaDataParams[];
+#endif
+		static void* NewStructOps();
+		static const UECodeGen_Private::FStructParams ReturnStructParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FHoudiniNodeInfo_Statics::Struct_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "ModuleRelativePath", "Public/HAPI_To_Unreal_Common_Bridge.h" },
+	};
+#endif
+	void* Z_Construct_UScriptStruct_FHoudiniNodeInfo_Statics::NewStructOps()
+	{
+		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FHoudiniNodeInfo>();
+	}
+	const UECodeGen_Private::FStructParams Z_Construct_UScriptStruct_FHoudiniNodeInfo_Statics::ReturnStructParams = {
+		(UObject* (*)())Z_Construct_UPackage__Script_CustomHEnginePlugin,
+		nullptr,
+		&NewStructOps,
+		"HoudiniNodeInfo",
+		sizeof(FHoudiniNodeInfo),
+		alignof(FHoudiniNodeInfo),
+		nullptr,
+		0,
+		RF_Public|RF_Transient|RF_MarkAsNative,
+		EStructFlags(0x00000001),
+		METADATA_PARAMS(Z_Construct_UScriptStruct_FHoudiniNodeInfo_Statics::Struct_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FHoudiniNodeInfo_Statics::Struct_MetaDataParams))
+	};
+	UScriptStruct* Z_Construct_UScriptStruct_FHoudiniNodeInfo()
+	{
+		if (!Z_Registration_Info_UScriptStruct_HoudiniNodeInfo.InnerSingleton)
+		{
+			UECodeGen_Private::ConstructUScriptStruct(Z_Registration_Info_UScriptStruct_HoudiniNodeInfo.InnerSingleton, Z_Construct_UScriptStruct_FHoudiniNodeInfo_Statics::ReturnStructParams);
+		}
+		return Z_Registration_Info_UScriptStruct_HoudiniNodeInfo.InnerSingleton;
+	}
+	static FStructRegistrationInfo Z_Registration_Info_UScriptStruct_HoudiniTransform;
+class UScriptStruct* FHoudiniTransform::StaticStruct()
+{
+	if (!Z_Registration_Info_UScriptStruct_HoudiniTransform.OuterSingleton)
+	{
+		Z_Registration_Info_UScriptStruct_HoudiniTransform.OuterSingleton = GetStaticStruct(Z_Construct_UScriptStruct_FHoudiniTransform, (UObject*)Z_Construct_UPackage__Script_CustomHEnginePlugin(), TEXT("HoudiniTransform"));
+	}
+	return Z_Registration_Info_UScriptStruct_HoudiniTransform.OuterSingleton;
+}
+template<> CUSTOMHENGINEPLUGIN_API UScriptStruct* StaticStruct<FHoudiniTransform>()
+{
+	return FHoudiniTransform::StaticStruct();
+}
+	struct Z_Construct_UScriptStruct_FHoudiniTransform_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Struct_MetaDataParams[];
+#endif
+		static void* NewStructOps();
+		static const UECodeGen_Private::FStructParams ReturnStructParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FHoudiniTransform_Statics::Struct_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "ModuleRelativePath", "Public/HAPI_To_Unreal_Common_Bridge.h" },
+	};
+#endif
+	void* Z_Construct_UScriptStruct_FHoudiniTransform_Statics::NewStructOps()
+	{
+		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FHoudiniTransform>();
+	}
+	const UECodeGen_Private::FStructParams Z_Construct_UScriptStruct_FHoudiniTransform_Statics::ReturnStructParams = {
+		(UObject* (*)())Z_Construct_UPackage__Script_CustomHEnginePlugin,
+		nullptr,
+		&NewStructOps,
+		"HoudiniTransform",
+		sizeof(FHoudiniTransform),
+		alignof(FHoudiniTransform),
+		nullptr,
+		0,
+		RF_Public|RF_Transient|RF_MarkAsNative,
+		EStructFlags(0x00000001),
+		METADATA_PARAMS(Z_Construct_UScriptStruct_FHoudiniTransform_Statics::Struct_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FHoudiniTransform_Statics::Struct_MetaDataParams))
+	};
+	UScriptStruct* Z_Construct_UScriptStruct_FHoudiniTransform()
+	{
+		if (!Z_Registration_Info_UScriptStruct_HoudiniTransform.InnerSingleton)
+		{
+			UECodeGen_Private::ConstructUScriptStruct(Z_Registration_Info_UScriptStruct_HoudiniTransform.InnerSingleton, Z_Construct_UScriptStruct_FHoudiniTransform_Statics::ReturnStructParams);
+		}
+		return Z_Registration_Info_UScriptStruct_HoudiniTransform.InnerSingleton;
+	}
+	static FStructRegistrationInfo Z_Registration_Info_UScriptStruct_HoudiniTransformEuler;
+class UScriptStruct* FHoudiniTransformEuler::StaticStruct()
+{
+	if (!Z_Registration_Info_UScriptStruct_HoudiniTransformEuler.OuterSingleton)
+	{
+		Z_Registration_Info_UScriptStruct_HoudiniTransformEuler.OuterSingleton = GetStaticStruct(Z_Construct_UScriptStruct_FHoudiniTransformEuler, (UObject*)Z_Construct_UPackage__Script_CustomHEnginePlugin(), TEXT("HoudiniTransformEuler"));
+	}
+	return Z_Registration_Info_UScriptStruct_HoudiniTransformEuler.OuterSingleton;
+}
+template<> CUSTOMHENGINEPLUGIN_API UScriptStruct* StaticStruct<FHoudiniTransformEuler>()
+{
+	return FHoudiniTransformEuler::StaticStruct();
+}
+	struct Z_Construct_UScriptStruct_FHoudiniTransformEuler_Statics
+	{
+#if WITH_METADATA
+		static const UECodeGen_Private::FMetaDataPairParam Struct_MetaDataParams[];
+#endif
+		static void* NewStructOps();
+		static const UECodeGen_Private::FStructParams ReturnStructParams;
+	};
+#if WITH_METADATA
+	const UECodeGen_Private::FMetaDataPairParam Z_Construct_UScriptStruct_FHoudiniTransformEuler_Statics::Struct_MetaDataParams[] = {
+		{ "BlueprintType", "true" },
+		{ "ModuleRelativePath", "Public/HAPI_To_Unreal_Common_Bridge.h" },
+	};
+#endif
+	void* Z_Construct_UScriptStruct_FHoudiniTransformEuler_Statics::NewStructOps()
+	{
+		return (UScriptStruct::ICppStructOps*)new UScriptStruct::TCppStructOps<FHoudiniTransformEuler>();
+	}
+	const UECodeGen_Private::FStructParams Z_Construct_UScriptStruct_FHoudiniTransformEuler_Statics::ReturnStructParams = {
+		(UObject* (*)())Z_Construct_UPackage__Script_CustomHEnginePlugin,
+		nullptr,
+		&NewStructOps,
+		"HoudiniTransformEuler",
+		sizeof(FHoudiniTransformEuler),
+		alignof(FHoudiniTransformEuler),
+		nullptr,
+		0,
+		RF_Public|RF_Transient|RF_MarkAsNative,
+		EStructFlags(0x00000001),
+		METADATA_PARAMS(Z_Construct_UScriptStruct_FHoudiniTransformEuler_Statics::Struct_MetaDataParams, UE_ARRAY_COUNT(Z_Construct_UScriptStruct_FHoudiniTransformEuler_Statics::Struct_MetaDataParams))
+	};
+	UScriptStruct* Z_Construct_UScriptStruct_FHoudiniTransformEuler()
+	{
+		if (!Z_Registration_Info_UScriptStruct_HoudiniTransformEuler.InnerSingleton)
+		{
+			UECodeGen_Private::ConstructUScriptStruct(Z_Registration_Info_UScriptStruct_HoudiniTransformEuler.InnerSingleton, Z_Construct_UScriptStruct_FHoudiniTransformEuler_Statics::ReturnStructParams);
+		}
+		return Z_Registration_Info_UScriptStruct_HoudiniTransformEuler.InnerSingleton;
+	}
 	struct Z_CompiledInDeferFile_FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_HAPI_To_Unreal_Common_Bridge_h_Statics
 	{
 		static const FEnumRegisterCompiledInInfo EnumInfo[];
@@ -801,8 +960,11 @@ template<> CUSTOMHENGINEPLUGIN_API UScriptStruct* StaticStruct<FVertexListStruct
 		{ FHoudiniPartInfo::StaticStruct, Z_Construct_UScriptStruct_FHoudiniPartInfo_Statics::NewStructOps, TEXT("HoudiniPartInfo"), &Z_Registration_Info_UScriptStruct_HoudiniPartInfo, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FHoudiniPartInfo), 961480838U) },
 		{ FHoudiniAttributeInfo::StaticStruct, Z_Construct_UScriptStruct_FHoudiniAttributeInfo_Statics::NewStructOps, TEXT("HoudiniAttributeInfo"), &Z_Registration_Info_UScriptStruct_HoudiniAttributeInfo, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FHoudiniAttributeInfo), 1630230711U) },
 		{ FVertexListStruct::StaticStruct, Z_Construct_UScriptStruct_FVertexListStruct_Statics::NewStructOps, TEXT("VertexListStruct"), &Z_Registration_Info_UScriptStruct_VertexListStruct, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FVertexListStruct), 1477708915U) },
+		{ FHoudiniNodeInfo::StaticStruct, Z_Construct_UScriptStruct_FHoudiniNodeInfo_Statics::NewStructOps, TEXT("HoudiniNodeInfo"), &Z_Registration_Info_UScriptStruct_HoudiniNodeInfo, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FHoudiniNodeInfo), 2901690084U) },
+		{ FHoudiniTransform::StaticStruct, Z_Construct_UScriptStruct_FHoudiniTransform_Statics::NewStructOps, TEXT("HoudiniTransform"), &Z_Registration_Info_UScriptStruct_HoudiniTransform, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FHoudiniTransform), 364164492U) },
+		{ FHoudiniTransformEuler::StaticStruct, Z_Construct_UScriptStruct_FHoudiniTransformEuler_Statics::NewStructOps, TEXT("HoudiniTransformEuler"), &Z_Registration_Info_UScriptStruct_HoudiniTransformEuler, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FHoudiniTransformEuler), 2028057573U) },
 	};
-	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_HAPI_To_Unreal_Common_Bridge_h_2885901475(TEXT("/Script/CustomHEnginePlugin"),
+	static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_HAPI_To_Unreal_Common_Bridge_h_2556293543(TEXT("/Script/CustomHEnginePlugin"),
 		nullptr, 0,
 		Z_CompiledInDeferFile_FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_HAPI_To_Unreal_Common_Bridge_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_HAPI_To_Unreal_Common_Bridge_h_Statics::ScriptStructInfo),
 		Z_CompiledInDeferFile_FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_HAPI_To_Unreal_Common_Bridge_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_HAPI_To_Unreal_Common_Bridge_h_Statics::EnumInfo));

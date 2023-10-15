@@ -3,6 +3,7 @@
 
 #include "CustomHEngineUtilsLibrary.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "CustomHEnginePluginBPLibrary.h"
 
 bool UCustomHEngineUtilsLibrary::GetUnrealMeshData(UStaticMesh* StaticMesh, TArray<FVector>& PositionList, TArray<int>& VertexList, TArray<int>& FaceList, TArray<FVector>& NormalList, TArray<FVector>& TangentList, TArray<FVector2D>& UVList, TArray<int>& SectionIndexList, TArray<UMaterialInterface*>& MaterialList)
 {
@@ -214,4 +215,107 @@ bool UCustomHEngineUtilsLibrary::SplitVertexListByStringAttributes(const TArray<
 		SplittedVertexLists[SectionIndex].VertexList.Add(VertexList[i]);
 	}
 	return true;
+}
+
+FHoudiniTransform UCustomHEngineUtilsLibrary::UnrealTransfromToHoudiniTransform(const FTransform& UnrealTransform)
+{
+	float TransFormScaleFactor = 100.f;
+	HAPI_Transform HoudiniTransform;
+	HAPI_Transform_Init(&HoudiniTransform);
+	HoudiniTransform.rstOrder = HAPI_SRT;
+
+	FQuat UnrealRotation = UnrealTransform.GetRotation();
+	FVector UnrealTranslation = UnrealTransform.GetTranslation();
+	FVector UnrealScale = UnrealTransform.GetScale3D();
+
+	HoudiniTransform.rotationQuaternion[0] = -UnrealRotation.X;
+	HoudiniTransform.rotationQuaternion[1] = -UnrealRotation.Z;
+	HoudiniTransform.rotationQuaternion[2] = -UnrealRotation.Y;
+	HoudiniTransform.rotationQuaternion[3] = UnrealRotation.W;
+
+	UnrealTranslation /= TransFormScaleFactor;
+	HoudiniTransform.position[0] = UnrealTranslation.X;
+	HoudiniTransform.position[1] = UnrealTranslation.Z;
+	HoudiniTransform.position[2] = UnrealTranslation.Y;
+
+	HoudiniTransform.scale[0] = UnrealScale.X;
+	HoudiniTransform.scale[1] = UnrealScale.Z;
+	HoudiniTransform.scale[2] = UnrealScale.Y;
+
+	FHoudiniTransform FinalHoudiniTransform;
+	FinalHoudiniTransform.HAPITransform = HoudiniTransform;
+
+	return FinalHoudiniTransform;
+
+}
+
+FHoudiniTransformEuler UCustomHEngineUtilsLibrary::UnrealTransfromToHoudiniTransformEuler(const FTransform& UnrealTransform)
+{
+	float TransFormScaleFactor = 100.f;
+	HAPI_TransformEuler HoudiniTransformEuler;
+	HAPI_TransformEuler_Init(&HoudiniTransformEuler);
+	HoudiniTransformEuler.rstOrder = HAPI_SRT;
+	HoudiniTransformEuler.rotationOrder = HAPI_XYZ;
+
+	FQuat UnrealRotation = UnrealTransform.GetRotation();
+	FVector UnrealTranslation = UnrealTransform.GetTranslation();
+	FVector UnrealScale = UnrealTransform.GetScale3D();
+
+	Swap(UnrealRotation.Y, UnrealRotation.Z);
+	UnrealRotation.W = -UnrealRotation.W;
+
+	const FRotator Rotator = UnrealRotation.Rotator();
+	HoudiniTransformEuler.rotationEuler[0] = -Rotator.Roll;
+	HoudiniTransformEuler.rotationEuler[1] = -Rotator.Pitch;
+	HoudiniTransformEuler.rotationEuler[2] = Rotator.Yaw;
+
+	UnrealTranslation /= TransFormScaleFactor;
+	HoudiniTransformEuler.position[0] = UnrealTranslation.X;
+	HoudiniTransformEuler.position[1] = UnrealTranslation.Z;
+	HoudiniTransformEuler.position[2] = UnrealTranslation.Y;
+
+	HoudiniTransformEuler.scale[0] = UnrealScale.X;
+	HoudiniTransformEuler.scale[1] = UnrealScale.Z;
+	HoudiniTransformEuler.scale[2] = UnrealScale.Y;
+		
+	FHoudiniTransformEuler FinalHoudiniTransformEuler;
+	FinalHoudiniTransformEuler.HAPITransformEuler = HoudiniTransformEuler;
+
+	return FinalHoudiniTransformEuler;
+
+}
+
+FTransform UCustomHEngineUtilsLibrary::HoudiniTransfromToUnrealTransform(const FHoudiniTransform& HoudiniTransform)
+{
+	HAPI_Transform HAPITransform = HoudiniTransform.HAPITransform;
+	float TransFormScaleFactor = 100.0f;
+	FQuat ObjectRotation(HAPITransform.rotationQuaternion[0], HAPITransform.position[2],
+		HAPITransform.position[1], HAPITransform.position[3]);
+	FVector ObjectTranslation(HAPITransform.position[0], HAPITransform.position[2], HAPITransform.position[1]);
+	ObjectTranslation *= TransFormScaleFactor;
+	FVector ObjectScale(HAPITransform.scale[0], HAPITransform.scale[2], HAPITransform.scale[1]);
+	FTransform Transform(ObjectRotation, ObjectTranslation, ObjectScale);
+	return Transform;
+
+}
+
+FTransform UCustomHEngineUtilsLibrary::HouidniTransformEulerToUnrealTransform(FHoudiniSession HoudiniSession, const FHoudiniTransformEuler& HoudiniTransformEuler)
+{
+	if (!UCustomHEnginePluginBPLibrary::HoudiniIsSessionValid(HoudiniSession))
+	{
+		return FTransform::Identity;
+	}
+	HAPI_Session OrigSession = HoudiniSession.ToHAPI_Session();
+	HAPI_TransformEuler TransformEuler = HoudiniTransformEuler.HAPITransformEuler;
+	float Matrix[16];
+	HAPI_ConvertTransformEulerToMatrix(&OrigSession, &TransformEuler, Matrix);
+
+	HAPI_Transform TransformQuat;
+	HAPI_Transform_Init(&TransformQuat);
+	HAPI_ConvertMatrixToQuat(&OrigSession, Matrix, HAPI_SRT, &TransformQuat);
+
+
+	FHoudiniTransform HoudiniTransform;
+	HoudiniTransform.HAPITransform = TransformQuat;
+	return HoudiniTransfromToUnrealTransform(HoudiniTransform);
 }

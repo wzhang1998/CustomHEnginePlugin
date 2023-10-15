@@ -49,6 +49,27 @@ template<> CUSTOMHENGINEPLUGIN_API UScriptStruct* StaticStruct<struct FHoudiniAt
 
 template<> CUSTOMHENGINEPLUGIN_API UScriptStruct* StaticStruct<struct FVertexListStruct>();
 
+#define FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_HAPI_To_Unreal_Common_Bridge_h_302_GENERATED_BODY \
+	friend struct Z_Construct_UScriptStruct_FHoudiniNodeInfo_Statics; \
+	CUSTOMHENGINEPLUGIN_API static class UScriptStruct* StaticStruct();
+
+
+template<> CUSTOMHENGINEPLUGIN_API UScriptStruct* StaticStruct<struct FHoudiniNodeInfo>();
+
+#define FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_HAPI_To_Unreal_Common_Bridge_h_310_GENERATED_BODY \
+	friend struct Z_Construct_UScriptStruct_FHoudiniTransform_Statics; \
+	CUSTOMHENGINEPLUGIN_API static class UScriptStruct* StaticStruct();
+
+
+template<> CUSTOMHENGINEPLUGIN_API UScriptStruct* StaticStruct<struct FHoudiniTransform>();
+
+#define FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_HAPI_To_Unreal_Common_Bridge_h_317_GENERATED_BODY \
+	friend struct Z_Construct_UScriptStruct_FHoudiniTransformEuler_Statics; \
+	CUSTOMHENGINEPLUGIN_API static class UScriptStruct* StaticStruct();
+
+
+template<> CUSTOMHENGINEPLUGIN_API UScriptStruct* StaticStruct<struct FHoudiniTransformEuler>();
+
 #undef CURRENT_FILE_ID
 #define CURRENT_FILE_ID FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_HAPI_To_Unreal_Common_Bridge_h
 

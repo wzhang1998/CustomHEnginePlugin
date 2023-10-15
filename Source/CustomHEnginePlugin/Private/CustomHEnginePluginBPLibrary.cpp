@@ -2,7 +2,7 @@
 
 #include "CustomHEnginePluginBPLibrary.h"
 #include "CustomHEnginePlugin.h"
-
+#include "CustomHEngineUtilsLibrary.h"
 
 UCustomHEnginePluginBPLibrary::UCustomHEnginePluginBPLibrary(const FObjectInitializer& ObjectInitializer)
 : Super(ObjectInitializer)
@@ -470,6 +470,54 @@ void UCustomHEnginePluginBPLibrary::HoudiniGetPartInfoSubData(const FHoudiniPart
 {
 	FaceCount = PartInfo.HAPIPartInfo.faceCount;
 	PointCount = PartInfo.HAPIPartInfo.pointCount;
+}
+
+bool UCustomHEnginePluginBPLibrary::HoudiniGetNodeInfo(FHoudiniSession HoudiniSession, int NodeId, FHoudiniNodeInfo& NodeInfo)
+{
+
+	if (!HoudiniIsSessionValid(HoudiniSession))
+	{
+		return false;
+	}
+	HAPI_Session OrigSession = HoudiniSession.ToHAPI_Session();
+	HAPI_Result Result = HAPI_GetNodeInfo(&OrigSession, (HAPI_NodeId)NodeId, &NodeInfo.HAPINodeInfo);
+	return Result == HAPI_RESULT_SUCCESS;
+}
+
+void UCustomHEnginePluginBPLibrary::HoudiniGetNodeInfoSubData(const FHoudiniNodeInfo& NodeInfo, int& ParentNodeId, bool& bIsValid, int& UniqueHoudiniNodeId)
+{
+	ParentNodeId = (int)NodeInfo.HAPINodeInfo.parentId;
+	bIsValid = (bool)NodeInfo.HAPINodeInfo.isValid;
+	UniqueHoudiniNodeId = NodeInfo.HAPINodeInfo.uniqueHoudiniNodeId;
+}
+
+bool UCustomHEnginePluginBPLibrary::HoudiniSetOBJNodeTransform(FHoudiniSession HoudiniSession, int OBJNodeId, const FTransform& Transform)
+{
+	if (!HoudiniIsSessionValid(HoudiniSession))
+	{
+		return false;
+	}
+	HAPI_Session OrigSession = HoudiniSession.ToHAPI_Session();
+	HAPI_TransformEuler TransformEuler = UCustomHEngineUtilsLibrary::UnrealTransfromToHoudiniTransformEuler(Transform).HAPITransformEuler;
+	HAPI_Result Result = HAPI_SetObjectTransform(&OrigSession, (HAPI_NodeId)OBJNodeId, &TransformEuler);
+	return Result == HAPI_RESULT_SUCCESS;
+}
+
+bool UCustomHEnginePluginBPLibrary::HoudiniGetOBJNodeTransform(FHoudiniSession HoudiniSession, int OBJNodeId, int RelativeNOBJNodeId, FTransform& Transform)
+{
+	if (!HoudiniIsSessionValid(HoudiniSession))
+	{
+		return false;
+	}
+	HAPI_Session OrigSession = HoudiniSession.ToHAPI_Session();
+	HAPI_Transform OrigTransform;
+	HAPI_Transform_Init(&OrigTransform);
+	HAPI_Result Result = HAPI_GetObjectTransform(&OrigSession, (HAPI_NodeId)OBJNodeId, (HAPI_NodeId)RelativeNOBJNodeId, HAPI_SRT, &OrigTransform);
+	FHoudiniTransform HoudiniTransform;
+	HoudiniTransform.HAPITransform = OrigTransform;
+	Transform = UCustomHEngineUtilsLibrary::HoudiniTransfromToUnrealTransform(HoudiniTransform);
+	return Result == HAPI_RESULT_SUCCESS;
+
 }
 
 FString UCustomHEnginePluginBPLibrary::ToString(FHoudiniSession HoudiniSession, HAPI_StringHandle InStringHandle)

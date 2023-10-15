@@ -11,6 +11,9 @@
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 class UMaterialInterface;
 class UStaticMesh;
+struct FHoudiniSession;
+struct FHoudiniTransform;
+struct FHoudiniTransformEuler;
 struct FProcMeshTangent;
 struct FVertexListStruct;
 #ifdef CUSTOMHENGINEPLUGIN_CustomHEngineUtilsLibrary_generated_h
@@ -21,6 +24,10 @@ struct FVertexListStruct;
 #define FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_CustomHEngineUtilsLibrary_h_17_SPARSE_DATA
 #define FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_CustomHEngineUtilsLibrary_h_17_RPC_WRAPPERS \
  \
+	DECLARE_FUNCTION(execHouidniTransformEulerToUnrealTransform); \
+	DECLARE_FUNCTION(execHoudiniTransfromToUnrealTransform); \
+	DECLARE_FUNCTION(execUnrealTransfromToHoudiniTransformEuler); \
+	DECLARE_FUNCTION(execUnrealTransfromToHoudiniTransform); \
 	DECLARE_FUNCTION(execSplitVertexListByStringAttributes); \
 	DECLARE_FUNCTION(execSplitVertexList); \
 	DECLARE_FUNCTION(execReverseVertexListOrder); \
@@ -34,6 +41,10 @@ struct FVertexListStruct;
 
 #define FID_Efiles_Unreal_Projects_20230924_customEngineTest_customEngine_Plugins_CustomHEnginePlugin_Source_CustomHEnginePlugin_Public_CustomHEngineUtilsLibrary_h_17_RPC_WRAPPERS_NO_PURE_DECLS \
  \
+	DECLARE_FUNCTION(execHouidniTransformEulerToUnrealTransform); \
+	DECLARE_FUNCTION(execHoudiniTransfromToUnrealTransform); \
+	DECLARE_FUNCTION(execUnrealTransfromToHoudiniTransformEuler); \
+	DECLARE_FUNCTION(execUnrealTransfromToHoudiniTransform); \
 	DECLARE_FUNCTION(execSplitVertexListByStringAttributes); \
 	DECLARE_FUNCTION(execSplitVertexList); \
 	DECLARE_FUNCTION(execReverseVertexListOrder); \
