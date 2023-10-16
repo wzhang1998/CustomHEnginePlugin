@@ -289,10 +289,7 @@
 /external:I "C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\shared"
 /external:I "C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\um"
 /external:I "C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\winrt"
-/FI"D:\Efiles\Unreal Projects\20230924_customEngineTest\customEngine\Intermediate\Build\Win64\x64\customEngineEditor\DebugGame\Engine\SharedPCH.Engine.NonOptimized.ShadowErrors.InclOrderUnreal5_1.h"
-/FI"D:\Efiles\Unreal Projects\20230924_customEngineTest\customEngine\Plugins\CustomHEnginePlugin\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\CustomHEnginePlugin\Definitions.CustomHEnginePlugin.h"
-/Yu"D:\Efiles\Unreal Projects\20230924_customEngineTest\customEngine\Intermediate\Build\Win64\x64\customEngineEditor\DebugGame\Engine\SharedPCH.Engine.NonOptimized.ShadowErrors.InclOrderUnreal5_1.h"
-/Fp"D:\Efiles\Unreal Projects\20230924_customEngineTest\customEngine\Intermediate\Build\Win64\x64\customEngineEditor\DebugGame\Engine\SharedPCH.Engine.NonOptimized.ShadowErrors.InclOrderUnreal5_1.h.pch"
+/FI"D:\Efiles\Unreal Projects\20230924_customEngineTest\customEngine\Plugins\CustomHEnginePlugin\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\CustomHEnginePlugin\Definitions.h"
 /Fo"D:\Efiles\Unreal Projects\20230924_customEngineTest\customEngine\Plugins\CustomHEnginePlugin\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\CustomHEnginePlugin\CustomHEngineUtilsLibrary.cpp.obj"
 /sourceDependencies "D:\Efiles\Unreal Projects\20230924_customEngineTest\customEngine\Plugins\CustomHEnginePlugin\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\CustomHEnginePlugin\CustomHEngineUtilsLibrary.cpp.dep.json"
 /Zc:inline
